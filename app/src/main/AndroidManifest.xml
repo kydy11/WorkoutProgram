@@ -9,13 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".workoutPage">
+        <activity android:name=".views.WorkoutMenu" />
+        <activity android:name=".views.AddWorkoutScreen" />
+        <activity android:name=".views.WorkoutPage" />
+        <activity android:name=".views.RoutineMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".views.SessionMenu" />
+        <activity android:name=".views.AddRoutineScreen" />
+        <activity android:name=".views.AddSessionScreen"></activity>
     </application>
 
 </manifest>
