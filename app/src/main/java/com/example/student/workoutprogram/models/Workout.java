@@ -12,6 +12,10 @@ public class Workout implements Serializable {
         workoutSets =new ArrayList<>();
     }
 
+    public void addSet(WorkoutSet set){
+        workoutSets.add(set);
+    }
+
     public String getWorkoutName() {
         return workoutName;
     }

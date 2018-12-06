@@ -3,13 +3,17 @@ package com.example.student.workoutprogram.models;
 public class StrengthSet extends WorkoutSet {
     private int reps;
 
-    public StrengthSet(int time, int reps, String units){
-        this.time=time;
+    public StrengthSet(int hours, int minutes, int seconds, int reps, String units){
+        this.hours=hours;
+        this.minutes=minutes;
+        this.seconds=seconds;
         this.reps=reps;
         this.units=units;
     }
-    public StrengthSet(int time, int reps){
-        this.time=time;
+    public StrengthSet(int hours, int minutes, int seconds, int reps){
+        this.hours=hours;
+        this.minutes=minutes;
+        this.seconds=seconds;
         this.reps=reps;
         this.units="lb";
     }
