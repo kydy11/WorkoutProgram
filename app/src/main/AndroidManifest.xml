@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".views.WorkoutMenu" />
         <activity android:name=".views.AddWorkoutScreen" />
-        <activity android:name=".views.WorkoutPage" />
+        <activity android:name=".views.SetEditPage" />
         <activity android:name=".views.RoutineMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

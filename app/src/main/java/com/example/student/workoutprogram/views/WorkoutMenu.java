@@ -11,12 +11,9 @@ import android.widget.ListView;
 
 import com.example.student.workoutprogram.R;
 import com.example.student.workoutprogram.listHelp.ModelSaveFile;
-import com.example.student.workoutprogram.listHelp.WorkoutListHelp;
 import com.example.student.workoutprogram.models.Model;
 import com.example.student.workoutprogram.models.Routine;
 import com.example.student.workoutprogram.models.Workout;
-
-import java.util.ArrayList;
 
 public class WorkoutMenu extends AppCompatActivity {
     private Button btn;
@@ -56,7 +53,7 @@ public class WorkoutMenu extends AppCompatActivity {
 
 
         final Intent toAddScreen = new Intent(WorkoutMenu.this, AddWorkoutScreen.class);
-        final Intent toWorkoutPage = new Intent(WorkoutMenu.this, WorkoutPage.class);
+        final Intent toWorkoutPage = new Intent(WorkoutMenu.this, SetEditPage.class);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
