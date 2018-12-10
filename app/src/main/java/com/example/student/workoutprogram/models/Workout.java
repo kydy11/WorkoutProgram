@@ -1,14 +1,18 @@
 package com.example.student.workoutprogram.models;
 
+import com.example.student.workoutprogram.views.WorkoutMenu;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Workout implements Serializable {
     private String workoutName;
+    private WorkoutMenu.Type type;
     private ArrayList<WorkoutSet> workoutSets;
 
-    public Workout(String name){
+    public Workout(String name, WorkoutMenu.Type type){
         workoutName=name;
+        this.type =type;
         workoutSets =new ArrayList<>();
     }
 

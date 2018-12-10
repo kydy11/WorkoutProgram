@@ -13,13 +13,16 @@ import com.example.student.workoutprogram.R;
 import com.example.student.workoutprogram.listHelp.ModelSaveFile;
 import com.example.student.workoutprogram.models.Model;
 import com.example.student.workoutprogram.models.Routine;
+import com.example.student.workoutprogram.models.StrengthSet;
 import com.example.student.workoutprogram.models.Workout;
 
 public class WorkoutMenu extends AppCompatActivity {
+    public static enum Type{Strength, Cardio};
     private Button btn;
     private ListView wList;
     private int routineNumb;
     private int sessionNumb;
+    private Type type;
 
     private Model model = Model.getInstance();
 
@@ -42,10 +45,16 @@ public class WorkoutMenu extends AppCompatActivity {
         //wItems = WorkoutListHelp.readData(this);
         adapter = new ArrayAdapter<Workout>(this, android.R.layout.simple_list_item_1, model.getList().get(routineNumb).getList().get(sessionNumb).getList());
         wList.setAdapter(adapter);
+        type = (Type) getIntent().getSerializableExtra("type");
 
         if(getIntent().getBooleanExtra("addToList", false)){
-            adapter.add(new Workout(getIntent().getStringExtra("nameOfRoutine")));
-            model.getList().add(new Routine(getIntent().getStringExtra("nameOfRoutine")));
+            //adapter.add(new Workout(getIntent().getStringExtra("nameOfRoutine")));
+
+            //if(getIntent().getSerializableExtra("type")==Type.Strength) {
+                model.getList().get(routineNumb).getList().get(sessionNumb).addWorkout(new Workout(getIntent().getStringExtra("nameOfWorkout"), type));
+            //}else{
+                //model.getList().get(routineNumb).getList().get(sessionNumb).addWorkout();
+            //}
             //WorkoutListHelp.writeData(wItems, this);
             ModelSaveFile.writeData(model.getList(), this);
         }

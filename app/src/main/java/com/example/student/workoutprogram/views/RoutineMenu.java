@@ -34,6 +34,8 @@ public class RoutineMenu extends AppCompatActivity {
         addNew = findViewById(R.id.addRoutineButton);
         rList = findViewById(R.id.routineList);
 
+        model.loadData(this);
+
 
         //rItems = RoutineListHelp.readData(this);
         adapter = new ArrayAdapter<Routine>(this, android.R.layout.simple_list_item_1, model.getList());

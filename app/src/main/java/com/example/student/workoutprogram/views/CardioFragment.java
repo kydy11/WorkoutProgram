@@ -101,7 +101,7 @@ public class CardioFragment extends Fragment {
                     minutes =Integer.parseInt(minutesText.getText().toString());
                     seconds = Integer.parseInt(secondsText.getText().toString());
 
-                    model.getList().get(routineNumb).getList().get(sessionNumb).getList().get(workoutNumb).addSet(new CardioSet());
+                    model.getList().get(routineNumb).getList().get(sessionNumb).getList().get(workoutNumb).addSet(new CardioSet(hours,minutes,seconds,distance,units));
 
                 }
             });

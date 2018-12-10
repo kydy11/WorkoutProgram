@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.student.workoutprogram.R;
+import com.example.student.workoutprogram.listHelp.ModelSaveFile;
 import com.example.student.workoutprogram.models.Model;
 import com.example.student.workoutprogram.models.Routine;
 
@@ -45,6 +46,7 @@ public class AddRoutineScreen extends AppCompatActivity {
                 /*toRoutineMenu.putExtra("addToList", true);
                 toRoutineMenu.putExtra("nameOfRoutine", name);*/
                 new Routine(name);
+                ModelSaveFile.writeData(model.getList(), v.getContext());
                 startActivity(toRoutineMenu);
             }
         });

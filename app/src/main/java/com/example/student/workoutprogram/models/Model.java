@@ -33,4 +33,8 @@ public class Model {
         return routines;
     }
 
+    public void loadData(Context context){
+        routines = ModelSaveFile.readData(context);
+    }
+
 }
