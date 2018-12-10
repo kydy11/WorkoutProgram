@@ -45,16 +45,12 @@ public class WorkoutMenu extends AppCompatActivity {
         //wItems = WorkoutListHelp.readData(this);
         adapter = new ArrayAdapter<Workout>(this, android.R.layout.simple_list_item_1, model.getList().get(routineNumb).getList().get(sessionNumb).getList());
         wList.setAdapter(adapter);
-        type = (Type) getIntent().getSerializableExtra("type");
 
         if(getIntent().getBooleanExtra("addToList", false)){
             //adapter.add(new Workout(getIntent().getStringExtra("nameOfRoutine")));
+            type = (Type) getIntent().getSerializableExtra("type");
 
-            //if(getIntent().getSerializableExtra("type")==Type.Strength) {
-                model.getList().get(routineNumb).getList().get(sessionNumb).addWorkout(new Workout(getIntent().getStringExtra("nameOfWorkout"), type));
-            //}else{
-                //model.getList().get(routineNumb).getList().get(sessionNumb).addWorkout();
-            //}
+            model.getList().get(routineNumb).getList().get(sessionNumb).addWorkout(new Workout(getIntent().getStringExtra("nameOfWorkout"), type));
             //WorkoutListHelp.writeData(wItems, this);
             ModelSaveFile.writeData(model.getList(), this);
         }

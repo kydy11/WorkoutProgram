@@ -5,6 +5,7 @@ import com.example.student.workoutprogram.views.WorkoutMenu;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
 public class Workout implements Serializable {
     private String workoutName;
     private WorkoutMenu.Type type;
