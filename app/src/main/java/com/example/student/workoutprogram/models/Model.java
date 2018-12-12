@@ -2,6 +2,7 @@ package com.example.student.workoutprogram.models;
 
 import android.content.Context;
 
+import com.example.student.workoutprogram.DatabaseHelper;
 import com.example.student.workoutprogram.listHelp.ModelSaveFile;
 import com.example.student.workoutprogram.views.RoutineMenu;
 
@@ -26,6 +27,8 @@ public class Model {
         if (!routines.contains(routine)) {
             routines.add(routine);
         }
+        //RoutineMenu.routineDb.insertData(routine.toString());
+
         //ModelSaveFile.writeData(routines, context);
     }
 

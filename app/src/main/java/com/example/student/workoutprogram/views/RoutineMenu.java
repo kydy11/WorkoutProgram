@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.student.workoutprogram.DatabaseHelper;
 import com.example.student.workoutprogram.R;
 import com.example.student.workoutprogram.listHelp.ModelSaveFile;
 import com.example.student.workoutprogram.listHelp.RoutineListHelp;
@@ -17,7 +18,8 @@ import com.example.student.workoutprogram.models.Routine;
 
 import java.util.ArrayList;
 
-public class RoutineMenu extends AppCompatActivity {
+public class RoutineMenu extends AppCompatActivity{
+    public static DatabaseHelper routineDb;
     private Button addNew;
     private ListView rList;
 
@@ -30,6 +32,7 @@ public class RoutineMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_routine_menu);
+        routineDb = new DatabaseHelper(this);
 
         addNew = findViewById(R.id.addRoutineButton);
         rList = findViewById(R.id.routineList);
