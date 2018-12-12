@@ -6,11 +6,11 @@ import java.util.ArrayList;
 public class Routine implements Serializable {
     private String routineName;
     private ArrayList<Session> sessions;
-    private Model model = Model.getInstance();
+    //private Model model = Model.getInstance();
 
     public Routine(String name){
         routineName=name;
-        model.addRoutine(this);
+        //model.addRoutine(this);
         sessions =new ArrayList<>();
     }
 
