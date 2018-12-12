@@ -34,7 +34,7 @@ public class RoutineMenu extends AppCompatActivity {
         addNew = findViewById(R.id.addRoutineButton);
         rList = findViewById(R.id.routineList);
 
-        model.loadData(this);
+        //model.loadData(this);
 
 
         //rItems = RoutineListHelp.readData(this);
