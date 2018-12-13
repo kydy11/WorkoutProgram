@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".views.CardioFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".views.StrengthFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,25 +13,25 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/distinceEditText"
+            android:id="@+id/repsEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:hint="Distance"
+            android:hint="reps"
             android:inputType="number" />
 
         <EditText
-            android:id="@+id/dUnitEditText"
+            android:id="@+id/wUnitEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:autofillHints=""
-            android:hint="mi"
+            android:hint="lb"
             android:inputType="text"
-            android:text="mi" />
+            android:text="lb" />
 
         <Button
-            android:id="@+id/addCSetBtn"
+            android:id="@+id/addSSetBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -47,30 +44,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
 
         <EditText
-            android:id="@+id/cTimeHrEditText"
+            android:id="@+id/sTimeHrEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
+            android:autofillHints=""
             android:hint="Hours"
-            android:inputType="number"
-            android:autofillHints="" />
+            android:inputType="number" />
 
         <EditText
-            android:id="@+id/cTimeMEditText"
+            android:id="@+id/sTimeMEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
+            android:autofillHints=""
             android:hint="minutes"
-            android:inputType="number"
-            android:autofillHints="" />
+            android:inputType="number" />
 
         <EditText
-            android:id="@+id/cTimeSEditText"
+            android:id="@+id/sTimeSEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
