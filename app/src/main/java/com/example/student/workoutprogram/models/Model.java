@@ -37,7 +37,8 @@ public class Model {
     }
 
     public void loadData(Context context){
-        routines = ModelSaveFile.readData(context);
+        ModelSaveFile modelSaveFile = new ModelSaveFile(context);
+        routines = modelSaveFile.readData();
     }
 
 }

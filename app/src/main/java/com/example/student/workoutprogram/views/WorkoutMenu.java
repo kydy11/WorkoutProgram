@@ -52,7 +52,8 @@ public class WorkoutMenu extends AppCompatActivity {
 
             model.getList().get(routineNumb).getList().get(sessionNumb).addWorkout(new Workout(getIntent().getStringExtra("nameOfWorkout"), type));
             //WorkoutListHelp.writeData(wItems, this);
-            ModelSaveFile.writeData(model.getList(), this);
+            ModelSaveFile modelSaveFile = new ModelSaveFile(this);
+            modelSaveFile.writeData(model.getList(), this);
         }
 
 

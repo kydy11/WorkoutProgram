@@ -48,7 +48,9 @@ public class SessionMenu extends AppCompatActivity {
             //adapter.add(new Session("something"));
             model.getList().get(routineNumb).addSession(new Session(getIntent().getStringExtra("nameOfSession")));
             //SessionListHelp.writeData(sItems, this);
-            ModelSaveFile.writeData(model.getList(), this);
+
+            ModelSaveFile modelSaveFile = new ModelSaveFile(this);
+            modelSaveFile.writeData(model.getList(), this);
         }
 
 

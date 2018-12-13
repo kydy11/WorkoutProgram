@@ -46,7 +46,8 @@ public class AddRoutineScreen extends AppCompatActivity {
                 /*toRoutineMenu.putExtra("addToList", true);
                 toRoutineMenu.putExtra("nameOfRoutine", name);*/
                 new Routine(name);
-                ModelSaveFile.writeData(model.getList(), v.getContext());
+                ModelSaveFile modelSaveFile = new ModelSaveFile(AddRoutineScreen.this);
+                modelSaveFile.writeData(model.getList(), v.getContext());
                 startActivity(toRoutineMenu);
             }
         });
