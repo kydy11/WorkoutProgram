@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.example.student.workoutprogram.R;
 import com.example.student.workoutprogram.listHelp.ModelSaveFile;
+import com.example.student.workoutprogram.listHelp.RoutineListHelp;
 import com.example.student.workoutprogram.models.Model;
 import com.example.student.workoutprogram.models.Routine;
 import com.example.student.workoutprogram.models.StrengthSet;
@@ -51,9 +52,12 @@ public class WorkoutMenu extends AppCompatActivity {
             type = (Type) getIntent().getSerializableExtra("type");
 
             model.getList().get(routineNumb).getList().get(sessionNumb).addWorkout(new Workout(getIntent().getStringExtra("nameOfWorkout"), type));
+            model.saveData(this);
+
             //WorkoutListHelp.writeData(wItems, this);
-            ModelSaveFile modelSaveFile = new ModelSaveFile(this);
-            modelSaveFile.writeData(model.getList(), this);
+//            ModelSaveFile modelSaveFile = new ModelSaveFile(this);
+//            modelSaveFile.writeData(model.getList());
+            //RoutineListHelp.writeData(model.getList(),this);
         }
 
 

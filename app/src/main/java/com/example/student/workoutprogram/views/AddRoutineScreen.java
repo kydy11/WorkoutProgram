@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import com.example.student.workoutprogram.R;
 import com.example.student.workoutprogram.listHelp.ModelSaveFile;
+import com.example.student.workoutprogram.listHelp.RoutineListHelp;
 import com.example.student.workoutprogram.models.Model;
 import com.example.student.workoutprogram.models.Routine;
 
@@ -45,9 +46,13 @@ public class AddRoutineScreen extends AppCompatActivity {
 
                 /*toRoutineMenu.putExtra("addToList", true);
                 toRoutineMenu.putExtra("nameOfRoutine", name);*/
+
                 new Routine(name);
-                ModelSaveFile modelSaveFile = new ModelSaveFile(AddRoutineScreen.this);
-                modelSaveFile.writeData(model.getList(), v.getContext());
+                model.saveData(AddRoutineScreen.this);
+
+//                ModelSaveFile modelSaveFile = new ModelSaveFile(AddRoutineScreen.this);
+//                modelSaveFile.writeData(model.getList());
+                //RoutineListHelp.writeData(model.getList(), AddRoutineScreen.this);
                 startActivity(toRoutineMenu);
             }
         });

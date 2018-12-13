@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.example.student.workoutprogram.R;
 import com.example.student.workoutprogram.listHelp.ModelSaveFile;
+import com.example.student.workoutprogram.listHelp.RoutineListHelp;
 import com.example.student.workoutprogram.listHelp.SessionListHelp;
 import com.example.student.workoutprogram.models.Model;
 import com.example.student.workoutprogram.models.Session;
@@ -49,8 +50,11 @@ public class SessionMenu extends AppCompatActivity {
             model.getList().get(routineNumb).addSession(new Session(getIntent().getStringExtra("nameOfSession")));
             //SessionListHelp.writeData(sItems, this);
 
-            ModelSaveFile modelSaveFile = new ModelSaveFile(this);
-            modelSaveFile.writeData(model.getList(), this);
+            model.saveData(this);
+
+//            ModelSaveFile modelSaveFile = new ModelSaveFile(this);
+//            modelSaveFile.writeData(model.getList());
+            //RoutineListHelp.writeData(model.getList(),this);
         }
 
 

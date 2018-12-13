@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.student.workoutprogram.DatabaseHelper;
 import com.example.student.workoutprogram.listHelp.ModelSaveFile;
+import com.example.student.workoutprogram.listHelp.RoutineListHelp;
 import com.example.student.workoutprogram.views.RoutineMenu;
 
 import java.util.ArrayList;
@@ -39,6 +40,12 @@ public class Model {
     public void loadData(Context context){
         ModelSaveFile modelSaveFile = new ModelSaveFile(context);
         routines = modelSaveFile.readData();
+        //routines =RoutineListHelp.readData(context);
+    }
+
+    public void saveData(Context context){
+        ModelSaveFile modelSaveFile = new ModelSaveFile(context);
+        modelSaveFile.writeData(routines);
     }
 
 }
