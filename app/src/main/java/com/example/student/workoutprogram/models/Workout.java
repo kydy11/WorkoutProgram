@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 
 public class Workout implements Serializable {
+    public static int current;
     private String workoutName;
     private WorkoutMenu.Type type;
     private ArrayList<WorkoutSet> workoutSets;
@@ -25,7 +26,7 @@ public class Workout implements Serializable {
         return workoutName;
     }
 
-    public ArrayList<WorkoutSet> getList(){
+    public ArrayList<WorkoutSet> getSets(){
         return workoutSets;
     }
 

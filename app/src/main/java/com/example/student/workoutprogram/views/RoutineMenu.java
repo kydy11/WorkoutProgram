@@ -59,8 +59,8 @@ public class RoutineMenu extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                //toSessionMenu.putExtra("RoutineOpened", model.getList().get(position));
-                toSessionMenu.putExtra("RoutineOpened", position);
+                //toSessionMenu.putExtra("RoutineOpened", model.getWorkouts().get(position));
+                Routine.current = position;
                 startActivity(toSessionMenu);
             }
         });

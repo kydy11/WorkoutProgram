@@ -10,19 +10,15 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.student.workoutprogram.R;
-import com.example.student.workoutprogram.listHelp.ModelSaveFile;
-import com.example.student.workoutprogram.listHelp.RoutineListHelp;
 import com.example.student.workoutprogram.models.Model;
 import com.example.student.workoutprogram.models.Routine;
-import com.example.student.workoutprogram.models.StrengthSet;
+import com.example.student.workoutprogram.models.Session;
 import com.example.student.workoutprogram.models.Workout;
 
 public class WorkoutMenu extends AppCompatActivity {
     public static enum Type{Strength, Cardio};
     private Button btn;
     private ListView wList;
-    private int routineNumb;
-    private int sessionNumb;
     private Type type;
 
     private Model model = Model.getInstance();
@@ -39,25 +35,23 @@ public class WorkoutMenu extends AppCompatActivity {
         btn = findViewById(R.id.addWorkoutButton);
         wList = findViewById(R.id.workoutList);
 
-        sessionNumb =getIntent().getIntExtra("sessionOpened",0);
-        routineNumb =getIntent().getIntExtra("routineOpened",0);
 
 
         //wItems = WorkoutListHelp.readData(this);
-        adapter = new ArrayAdapter<Workout>(this, android.R.layout.simple_list_item_1, model.getList().get(routineNumb).getList().get(sessionNumb).getList());
+        adapter = new ArrayAdapter<Workout>(this, android.R.layout.simple_list_item_1, model.getList().get(Routine.current).getSessions().get(Session.current).getWorkouts());
         wList.setAdapter(adapter);
 
         if(getIntent().getBooleanExtra("addToList", false)){
             //adapter.add(new Workout(getIntent().getStringExtra("nameOfRoutine")));
             type = (Type) getIntent().getSerializableExtra("type");
 
-            model.getList().get(routineNumb).getList().get(sessionNumb).addWorkout(new Workout(getIntent().getStringExtra("nameOfWorkout"), type));
+            model.getList().get(Routine.current).getSessions().get(Session.current).addWorkout(new Workout(getIntent().getStringExtra("nameOfWorkout"), type));
             model.saveData(this);
 
             //WorkoutListHelp.writeData(wItems, this);
 //            ModelSaveFile modelSaveFile = new ModelSaveFile(this);
-//            modelSaveFile.writeData(model.getList());
-            //RoutineListHelp.writeData(model.getList(),this);
+//            modelSaveFile.writeData(model.getWorkouts());
+            //RoutineListHelp.writeData(model.getWorkouts(),this);
         }
 
 
@@ -75,6 +69,7 @@ public class WorkoutMenu extends AppCompatActivity {
         wList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Workout.current =position;
                 startActivity(toWorkoutPage);
             }
         });

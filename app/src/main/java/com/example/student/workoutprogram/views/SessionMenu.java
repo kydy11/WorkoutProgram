@@ -10,18 +10,13 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.student.workoutprogram.R;
-import com.example.student.workoutprogram.listHelp.ModelSaveFile;
-import com.example.student.workoutprogram.listHelp.RoutineListHelp;
-import com.example.student.workoutprogram.listHelp.SessionListHelp;
 import com.example.student.workoutprogram.models.Model;
+import com.example.student.workoutprogram.models.Routine;
 import com.example.student.workoutprogram.models.Session;
-
-import java.util.ArrayList;
 
 public class SessionMenu extends AppCompatActivity {
     private Button addNew;
     private ListView sList;
-    private int routineNumb;
 
     private Model model = Model.getInstance();
 
@@ -36,25 +31,25 @@ public class SessionMenu extends AppCompatActivity {
         addNew =findViewById(R.id.addSessionButton);
         sList =findViewById(R.id.sessionList);
 
-        routineNumb =getIntent().getIntExtra("routineOpened",0);
+
 
 
 
 
         //sItems = SessionListHelp.readData(this);
-        adapter = new ArrayAdapter<Session>(this, android.R.layout.simple_list_item_1, model.getList().get(routineNumb).getList());
+        adapter = new ArrayAdapter<Session>(this, android.R.layout.simple_list_item_1, model.getList().get(Routine.current).getSessions());
         sList.setAdapter(adapter);
 
         if(getIntent().getBooleanExtra("addToList", false)){
             //adapter.add(new Session("something"));
-            model.getList().get(routineNumb).addSession(new Session(getIntent().getStringExtra("nameOfSession")));
+            model.getList().get(Routine.current).addSession(new Session(getIntent().getStringExtra("nameOfSession")));
             //SessionListHelp.writeData(sItems, this);
 
             model.saveData(this);
 
 //            ModelSaveFile modelSaveFile = new ModelSaveFile(this);
-//            modelSaveFile.writeData(model.getList());
-            //RoutineListHelp.writeData(model.getList(),this);
+//            modelSaveFile.writeData(model.getWorkouts());
+            //RoutineListHelp.writeData(model.getWorkouts(),this);
         }
 
 
@@ -72,13 +67,14 @@ public class SessionMenu extends AppCompatActivity {
         sList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                toWorkoutMenu.putExtra("SessionOpened", position);
-                toWorkoutMenu.putExtra("routineOpened", routineNumb);
+                Session.current = position;
 
                 startActivity(toWorkoutMenu);
             }
         });
     }
+
+
 }
 
 

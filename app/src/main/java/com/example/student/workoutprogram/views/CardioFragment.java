@@ -14,6 +14,9 @@ import android.widget.ListView;
 import com.example.student.workoutprogram.R;
 import com.example.student.workoutprogram.models.CardioSet;
 import com.example.student.workoutprogram.models.Model;
+import com.example.student.workoutprogram.models.Routine;
+import com.example.student.workoutprogram.models.Session;
+import com.example.student.workoutprogram.models.Workout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,10 +49,6 @@ public class CardioFragment extends Fragment {
     private int hours;
     private int minutes;
     private int seconds;
-
-    private int routineNumb;
-    private int sessionNumb;
-    private int workoutNumb;
 
     private Model model = Model.getInstance();
 
@@ -101,7 +100,7 @@ public class CardioFragment extends Fragment {
                     minutes =Integer.parseInt(minutesText.getText().toString());
                     seconds = Integer.parseInt(secondsText.getText().toString());
 
-                    model.getList().get(routineNumb).getList().get(sessionNumb).getList().get(workoutNumb).addSet(new CardioSet(hours,minutes,seconds,distance,units));
+                    model.getList().get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).addSet(new CardioSet(hours,minutes,seconds,distance,units));
 
                 }
             });

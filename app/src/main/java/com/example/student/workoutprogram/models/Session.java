@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Session implements Serializable {
+    public static int current;
     private String sessionName;
     private ArrayList<Workout> workouts;
 
@@ -16,7 +17,7 @@ public class Session implements Serializable {
         workouts.add(workout);
     }
 
-    public ArrayList<Workout> getList(){
+    public ArrayList<Workout> getWorkouts(){
         return workouts;
     }
 

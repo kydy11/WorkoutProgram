@@ -12,9 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.WorkoutMenu" />
-        <activity android:name=".views.AddWorkoutScreen" />
-        <activity android:name=".views.SetEditPage" />
+        <activity android:name=".views.WorkoutMenu"
+            android:parentActivityName=".views.SessionMenu">
+        </activity>
+        <activity android:name=".views.AddWorkoutScreen"
+            android:parentActivityName=".views.WorkoutMenu">
+        </activity>
+        <activity android:name=".views.SetEditPage"
+            android:parentActivityName=".views.WorkoutMenu">
+        </activity>
         <activity android:name=".views.RoutineMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,9 +28,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.SessionMenu" />
-        <activity android:name=".views.AddRoutineScreen" />
-        <activity android:name=".views.AddSessionScreen"></activity>
+        <activity android:name=".views.SessionMenu"
+            android:parentActivityName=".views.RoutineMenu">
+        </activity>
+        <activity android:name=".views.AddRoutineScreen"
+            android:parentActivityName=".views.RoutineMenu">
+        </activity>
+        <activity android:name=".views.AddSessionScreen"
+            android:parentActivityName=".views.SessionMenu">
+        </activity>
     </application>
 
 </manifest>

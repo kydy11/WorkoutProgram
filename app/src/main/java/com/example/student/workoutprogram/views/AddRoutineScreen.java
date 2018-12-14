@@ -51,8 +51,8 @@ public class AddRoutineScreen extends AppCompatActivity {
                 model.saveData(AddRoutineScreen.this);
 
 //                ModelSaveFile modelSaveFile = new ModelSaveFile(AddRoutineScreen.this);
-//                modelSaveFile.writeData(model.getList());
-                //RoutineListHelp.writeData(model.getList(), AddRoutineScreen.this);
+//                modelSaveFile.writeData(model.getWorkouts());
+                //RoutineListHelp.writeData(model.getWorkouts(), AddRoutineScreen.this);
                 startActivity(toRoutineMenu);
             }
         });

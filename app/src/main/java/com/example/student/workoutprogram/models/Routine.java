@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Routine implements Serializable {
+    public static int current;
     private String routineName;
     private ArrayList<Session> sessions;
 
@@ -19,7 +20,7 @@ public class Routine implements Serializable {
         sessions.add(session);
     }
 
-    public ArrayList<Session> getList(){
+    public ArrayList<Session> getSessions(){
         return sessions;
     }
 
