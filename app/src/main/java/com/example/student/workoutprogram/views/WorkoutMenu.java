@@ -1,6 +1,7 @@
 package com.example.student.workoutprogram.views;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -57,7 +58,6 @@ public class WorkoutMenu extends AppCompatActivity {
 
 
         final Intent toAddScreen = new Intent(WorkoutMenu.this, AddWorkoutScreen.class);
-        final Intent toWorkoutPage = new Intent(WorkoutMenu.this, SetEditPage.class);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +70,9 @@ public class WorkoutMenu extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Workout.current =position;
-                startActivity(toWorkoutPage);
+                FragmentManager fm = getSupportFragmentManager();
+                StrengthFragment dialogFragment =new StrengthFragment();
+                dialogFragment.show(fm, "Temporary Title");
             }
         });
 

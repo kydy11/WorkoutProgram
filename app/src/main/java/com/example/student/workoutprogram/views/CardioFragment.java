@@ -83,29 +83,30 @@ public class CardioFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
 
-            distanceText = getActivity().findViewById(R.id.distinceEditText);
-            unitText = getActivity().findViewById(R.id.dUnitEditText);
-            hoursText =getActivity().findViewById(R.id.cTimeHrEditText);
-            minutesText = getActivity().findViewById(R.id.cTimeMEditText);
-            secondsText = getActivity().findViewById(R.id.cTimeSEditText);
-            addSetBtn = getActivity().findViewById(R.id.addCSetBtn);
-            setList = getActivity().findViewById(R.id.cSetList);
-
-            addSetBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    distance = Integer.parseInt(distanceText.getText().toString());
-                    units = unitText.getText().toString();
-                    hours = Integer.parseInt(hoursText.getText().toString());
-                    minutes =Integer.parseInt(minutesText.getText().toString());
-                    seconds = Integer.parseInt(secondsText.getText().toString());
-
-                    model.getList().get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).addSet(new CardioSet(hours,minutes,seconds,distance,units));
-
-                }
-            });
 
         }
+
+        distanceText = getActivity().findViewById(R.id.distinceEditText);
+        unitText = getActivity().findViewById(R.id.dUnitEditText);
+        hoursText =getActivity().findViewById(R.id.cTimeHrEditText);
+        minutesText = getActivity().findViewById(R.id.cTimeMEditText);
+        secondsText = getActivity().findViewById(R.id.cTimeSEditText);
+        addSetBtn = getActivity().findViewById(R.id.addCSetBtn);
+        setList = getActivity().findViewById(R.id.cSetList);
+
+        addSetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                distance = Integer.parseInt(distanceText.getText().toString());
+                units = unitText.getText().toString();
+                hours = Integer.parseInt(hoursText.getText().toString());
+                minutes =Integer.parseInt(minutesText.getText().toString());
+                seconds = Integer.parseInt(secondsText.getText().toString());
+
+                model.getList().get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).addSet(new CardioSet(hours,minutes,seconds,distance,units));
+
+            }
+        });
     }
 
     @Override

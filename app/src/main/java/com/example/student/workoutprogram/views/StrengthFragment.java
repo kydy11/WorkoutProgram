@@ -3,12 +3,22 @@ package com.example.student.workoutprogram.views;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 
 import com.example.student.workoutprogram.R;
+import com.example.student.workoutprogram.models.CardioSet;
+import com.example.student.workoutprogram.models.Model;
+import com.example.student.workoutprogram.models.Routine;
+import com.example.student.workoutprogram.models.Session;
+import com.example.student.workoutprogram.models.StrengthSet;
+import com.example.student.workoutprogram.models.Workout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +28,7 @@ import com.example.student.workoutprogram.R;
  * Use the {@link StrengthFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class StrengthFragment extends Fragment {
+public class StrengthFragment extends DialogFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -27,6 +37,22 @@ public class StrengthFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private EditText repsText;
+    private EditText unitText;
+    private EditText hoursText;
+    private EditText minutesText;
+    private EditText secondsText;
+    private Button addSetBtn;
+    private ListView setList;
+
+    private int reps;
+    private String units;
+    private int hours;
+    private int minutes;
+    private int seconds;
+
+    private Model model = Model.getInstance();
 
     private OnFragmentInteractionListener mListener;
 
@@ -59,13 +85,40 @@ public class StrengthFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        repsText = getActivity().findViewById(R.id.repsEditText);
+        unitText = getActivity().findViewById(R.id.wUnitEditText);
+        hoursText =getActivity().findViewById(R.id.sTimeHrEditText);
+        minutesText = getActivity().findViewById(R.id.sTimeMEditText);
+        secondsText = getActivity().findViewById(R.id.sTimeSEditText);
+        addSetBtn = getActivity().findViewById(R.id.addSSetBtn);
+        setList = getActivity().findViewById(R.id.sSetList);
+
+        addSetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reps = Integer.parseInt(repsText.getText().toString());
+                units = unitText.getText().toString();
+                hours = Integer.parseInt(hoursText.getText().toString());
+                minutes =Integer.parseInt(minutesText.getText().toString());
+                seconds = Integer.parseInt(secondsText.getText().toString());
+
+                model.getList().get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).addSet(new StrengthSet(hours,minutes,seconds,reps,units));
+
+            }
+        });
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_strength, container, false);
+        View rootView =inflater.inflate(R.layout.fragment_strength, container, false);
+        //return inflater.inflate(R.layout.fragment_strength, container, false);
+        getDialog().setTitle("Temporary Title");
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
