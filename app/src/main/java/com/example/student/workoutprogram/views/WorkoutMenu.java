@@ -46,7 +46,7 @@ public class WorkoutMenu extends AppCompatActivity {
             //adapter.add(new Workout(getIntent().getStringExtra("nameOfRoutine")));
             type = (Type) getIntent().getSerializableExtra("type");
 
-            model.getList().get(Routine.current).getSessions().get(Session.current).addWorkout(new Workout(getIntent().getStringExtra("nameOfWorkout"), type));
+            model.addWorkout(new Workout(getIntent().getStringExtra("nameOfWorkout"), type));
             model.saveData(this);
 
             //WorkoutListHelp.writeData(wItems, this);
@@ -71,7 +71,7 @@ public class WorkoutMenu extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Workout.current =position;
                 FragmentManager fm = getSupportFragmentManager();
-                StrengthFragment dialogFragment =new StrengthFragment();
+                StrengthFragment dialogFragment = StrengthFragment.newInstance();
                 dialogFragment.show(fm, "Temporary Title");
             }
         });

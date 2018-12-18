@@ -14,6 +14,8 @@ import com.example.student.workoutprogram.models.Model;
 import com.example.student.workoutprogram.models.Routine;
 import com.example.student.workoutprogram.models.Session;
 
+import java.util.ArrayList;
+
 public class SessionMenu extends AppCompatActivity {
     private Button addNew;
     private ListView sList;
@@ -37,12 +39,16 @@ public class SessionMenu extends AppCompatActivity {
 
 
         //sItems = SessionListHelp.readData(this);
-        adapter = new ArrayAdapter<Session>(this, android.R.layout.simple_list_item_1, model.getList().get(Routine.current).getSessions());
-        sList.setAdapter(adapter);
+        ArrayList<Session> sessions =  model.getList().get(Routine.current).getSessions();
+        if (sessions.size() != 0) {
+            adapter = new ArrayAdapter<Session>(this, android.R.layout.simple_list_item_1, sessions);
+            sList.setAdapter(adapter);
+        }
+
 
         if(getIntent().getBooleanExtra("addToList", false)){
             //adapter.add(new Session("something"));
-            model.getList().get(Routine.current).addSession(new Session(getIntent().getStringExtra("nameOfSession")));
+            model.addSession(new Session(getIntent().getStringExtra("nameOfSession")));
             //SessionListHelp.writeData(sItems, this);
 
             model.saveData(this);

@@ -25,12 +25,20 @@ public class Model {
     }
 
     public void addRoutine(Routine routine){
-        if (!routines.contains(routine)) {
-            routines.add(routine);
-        }
-        //RoutineMenu.routineDb.insertData(routine.toString());
+        routines.add(routine);
 
-        //ModelSaveFile.writeData(routines, context);
+    }
+
+    public void addSession(Session session){
+        routines.get(Routine.current).addSession(session);
+    }
+
+    public void addWorkout(Workout workout){
+        routines.get(Routine.current).getSessions().get(Session.current).addWorkout(workout);
+    }
+
+    public void addSet(WorkoutSet set){
+        routines.get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).addSet(set);
     }
 
     public ArrayList<Routine> getList(){

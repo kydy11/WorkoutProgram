@@ -12,8 +12,8 @@ public class Routine implements Serializable {
     public Routine(String name){
         routineName=name;
         Model model = Model.getInstance();
-        model.addRoutine(this);
         sessions =new ArrayList<>();
+        model.addRoutine(this);
     }
 
     public void addSession(Session session){
