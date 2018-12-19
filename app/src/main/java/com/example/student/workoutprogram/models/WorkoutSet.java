@@ -14,5 +14,18 @@ public class WorkoutSet implements Serializable {
         return notes;
     }
 
+    @Override
+    public String toString(){
+        if (this.getClass().equals(CardioSet.class)) {
+            return ((CardioSet)this).toString();
+        } else {
+            return ((StrengthSet)this).toString();
+        }
+
+    }
+
+
+
+
 }
 

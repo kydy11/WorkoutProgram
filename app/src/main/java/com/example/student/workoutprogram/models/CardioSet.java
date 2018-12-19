@@ -35,6 +35,6 @@ public class CardioSet extends WorkoutSet {
     @Override
     public String toString() {
         //return super.toString();
-        return distance + " " + units + " speed: " +calcSpeed() + " pace: "+ calcPace();//distance, speed, pace.
+        return distance + " " + units + ", speed: " +calcSpeed() + ", pace: "+ calcPace();//distance, speed, pace.
     }
 }

@@ -18,17 +18,103 @@
         android:id="@+id/workoutList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="10dp"
 
         >
 
     </ListView>
 
-    <fragment
-        android:id="@+id/fragment3"
-        android:name="com.example.student.workoutprogram.views.CardioFragment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="(select a workout)"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/distinceEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:hint="Distance"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/dUnitEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:autofillHints=""
+                android:hint="mi"
+                android:inputType="text"
+                android:text="mi" />
+
+            <Button
+                android:id="@+id/addCSetBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_weight="1"
+                android:text="add" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/cTimeHrEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:autofillHints=""
+                android:hint="Hours"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/cTimeMEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:autofillHints=""
+                android:hint="minutes"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/cTimeSEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:hint="Seconds"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/cSetList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+            >
+
+        </ListView>
+    </LinearLayout>
 
 </LinearLayout>
