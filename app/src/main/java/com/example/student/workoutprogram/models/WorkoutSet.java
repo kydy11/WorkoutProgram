@@ -3,6 +3,8 @@ package com.example.student.workoutprogram.models;
 import java.io.Serializable;
 
 public class WorkoutSet implements Serializable {
+    public static int current;
+
     protected int hours;
     protected int minutes;
     protected int seconds;
@@ -10,8 +12,11 @@ public class WorkoutSet implements Serializable {
     protected String units;
     protected String notes;
 
-    protected String getNotes(){
+    public String getNotes(){
         return notes;
+    }
+    public void setNotes(String notes){
+        this.notes = notes;
     }
 
     @Override

@@ -41,9 +41,23 @@ public class Model {
         routines.get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).addSet(set);
     }
 
+    /*******/
     public ArrayList<Routine> getList(){
         return routines;
     }
+
+    public ArrayList<Session> getSessions(){
+        return this.getList().get(Routine.current).getSessions();
+    }
+
+    public ArrayList<Workout> getWorkouts(){
+        return this.getSessions().get(Session.current).getWorkouts();
+    }
+
+    public ArrayList<WorkoutSet> getSets(){
+        return this.getWorkouts().get(WorkoutSet.current).getSets();
+    }
+    /*******/
 
     public void loadData(Context context){
         ModelSaveFile modelSaveFile = new ModelSaveFile(context);

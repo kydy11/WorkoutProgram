@@ -27,7 +27,12 @@ public class Workout implements Serializable {
     }
 
     public ArrayList<WorkoutSet> getSets(){
-        return workoutSets;
+        if(workoutSets.size()!=0) {
+            return workoutSets;
+        }else{
+            workoutSets =new ArrayList<>();
+            return workoutSets;
+        }
     }
 
     @Override

@@ -1,9 +1,12 @@
 package com.example.student.workoutprogram.views;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -49,6 +52,8 @@ public class WorkoutMenu extends AppCompatActivity {
     private int minutes;
     private int seconds;
 
+    private String dialogText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +75,10 @@ public class WorkoutMenu extends AppCompatActivity {
 
         //wItems = WorkoutListHelp.readData(this);
 
-        adapter = new ArrayAdapter<Workout>(this, android.R.layout.simple_list_item_1, model.getList().get(Routine.current).getSessions().get(Session.current).getWorkouts());
+        adapter = new ArrayAdapter<Workout>(this, android.R.layout.simple_list_item_1, model.getWorkouts());
         wList.setAdapter(adapter);
 
-        setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, model.getList().get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).getSets());
+        setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, model.getSets());
         setList.setAdapter(setAdapter);
 
         if(getIntent().getBooleanExtra("addToList", false)){
@@ -98,7 +103,7 @@ public class WorkoutMenu extends AppCompatActivity {
                 minutes =Integer.parseInt(minutesText.getText().toString());
                 seconds = Integer.parseInt(secondsText.getText().toString());
 
-                model.getList().get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).addSet(new CardioSet(hours,minutes,seconds,distance,units));
+                model.addSet(new CardioSet(hours,minutes,seconds,distance,units));
 
                 refreshList();
 
@@ -120,12 +125,52 @@ public class WorkoutMenu extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Workout.current =position;
-                workoutTitle.setText(model.getList().get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).toString());
+                workoutTitle.setText(model.getWorkouts().get(Workout.current).toString());
 
                 refreshList();
                 /*FragmentManager fm = getSupportFragmentManager();
                 StrengthFragment dialogFragment = StrengthFragment.newInstance();
                 dialogFragment.show(fm, "Temporary Title");*/
+            }
+        });
+
+        setList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+
+                /******************************************************/// dialog code
+                AlertDialog.Builder builder = new AlertDialog.Builder(WorkoutMenu.this);
+                builder.setTitle("Notes");
+
+// Set up the input
+                final EditText input = new EditText(WorkoutMenu.this);
+// Specify the type of input expected.
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder.setView(input);
+                WorkoutSet.current = position;
+                input.setText(model.getList().get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).getSets().get(WorkoutSet.current).getNotes());
+
+// Set up the buttons
+                builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialogText = input.getText().toString();
+                        model.getList().get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).getSets().get(WorkoutSet.current).setNotes(dialogText);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+                /******************************************************/
+
+
             }
         });
 

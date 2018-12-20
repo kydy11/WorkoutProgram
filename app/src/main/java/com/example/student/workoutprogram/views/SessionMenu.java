@@ -39,7 +39,7 @@ public class SessionMenu extends AppCompatActivity {
 
 
         //sItems = SessionListHelp.readData(this);
-        ArrayList<Session> sessions =  model.getList().get(Routine.current).getSessions();
+        ArrayList<Session> sessions =  model.getSessions();
         if (sessions.size() != 0) {
             adapter = new ArrayAdapter<Session>(this, android.R.layout.simple_list_item_1, sessions);
             sList.setAdapter(adapter);
