@@ -47,15 +47,33 @@ public class Model {
     }
 
     public ArrayList<Session> getSessions(){
-        return this.getList().get(Routine.current).getSessions();
+
+        Routine routine =routines.get(Routine.current);
+        ArrayList<Session> sessions= routine.getSessions();
+
+        return sessions;
     }
 
     public ArrayList<Workout> getWorkouts(){
-        return this.getSessions().get(Session.current).getWorkouts();
+
+        ArrayList<Session> sessionsList =this.getSessions();
+        Session session =sessionsList.get(Session.current);
+        ArrayList<Workout> workouts =session.getWorkouts();
+
+        return workouts;
     }
 
     public ArrayList<WorkoutSet> getSets(){
-        return this.getWorkouts().get(WorkoutSet.current).getSets();
+
+        ArrayList<Workout> workoutList = this.getWorkouts();
+        if(workoutList.size() == 0)
+        {
+            return new ArrayList<WorkoutSet>();
+        }
+        Workout workout = workoutList.get(Workout.current);
+        ArrayList<WorkoutSet> sets =workout.getSets();
+
+        return sets;
     }
     /*******/
 

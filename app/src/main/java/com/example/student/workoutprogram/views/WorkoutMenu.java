@@ -24,6 +24,7 @@ import com.example.student.workoutprogram.models.Workout;
 import com.example.student.workoutprogram.models.WorkoutSet;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WorkoutMenu extends AppCompatActivity {
     public static enum Type{Strength, Cardio};
@@ -78,8 +79,6 @@ public class WorkoutMenu extends AppCompatActivity {
         adapter = new ArrayAdapter<Workout>(this, android.R.layout.simple_list_item_1, model.getWorkouts());
         wList.setAdapter(adapter);
 
-        setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, model.getSets());
-        setList.setAdapter(setAdapter);
 
         if(getIntent().getBooleanExtra("addToList", false)){
             //adapter.add(new Workout(getIntent().getStringExtra("nameOfRoutine")));
