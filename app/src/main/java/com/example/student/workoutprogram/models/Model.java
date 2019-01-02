@@ -47,15 +47,27 @@ public class Model {
     }
 
     public ArrayList<Session> getSessions(){
-        return this.getList().get(Routine.current).getSessions();
+
+        Routine routine = routines.get(Routine.current);
+        ArrayList<Session> sessions =routine.getSessions();
+
+        return sessions;
     }
 
     public ArrayList<Workout> getWorkouts(){
-        return this.getSessions().get(Session.current).getWorkouts();
+
+        ArrayList<Session> sessions =this.getSessions();
+        Session session =sessions.get(Session.current);
+        ArrayList<Workout> workouts =session.getWorkouts();
+
+        return workouts;
     }
 
     public ArrayList<WorkoutSet> getSets(){
-        return this.getWorkouts().get(WorkoutSet.current).getSets();
+
+
+
+        return this.getWorkouts().get(Workout.current).getSets();
     }
     /*******/
 

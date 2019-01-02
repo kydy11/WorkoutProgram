@@ -78,8 +78,8 @@ public class WorkoutMenu extends AppCompatActivity {
         adapter = new ArrayAdapter<Workout>(this, android.R.layout.simple_list_item_1, model.getWorkouts());
         wList.setAdapter(adapter);
 
-        setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, model.getSets());
-        setList.setAdapter(setAdapter);
+        hideSets();
+
 
         if(getIntent().getBooleanExtra("addToList", false)){
             //adapter.add(new Workout(getIntent().getStringExtra("nameOfRoutine")));
@@ -105,6 +105,8 @@ public class WorkoutMenu extends AppCompatActivity {
 
                 model.addSet(new CardioSet(hours,minutes,seconds,distance,units));
 
+                model.saveData(WorkoutMenu.this);
+
                 refreshList();
 
             }
@@ -123,8 +125,9 @@ public class WorkoutMenu extends AppCompatActivity {
 
         wList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) { //workout list
                 Workout.current =position;
+                showSets();
                 workoutTitle.setText(model.getWorkouts().get(Workout.current).toString());
 
                 refreshList();
@@ -177,8 +180,30 @@ public class WorkoutMenu extends AppCompatActivity {
 
 
     }
+    private void hideSets(){
+        distanceText.setVisibility(View.INVISIBLE);
+        unitText.setVisibility(View.INVISIBLE);
+        hoursText.setVisibility(View.INVISIBLE);
+        minutesText.setVisibility(View.INVISIBLE);
+        secondsText.setVisibility(View.INVISIBLE);
+        addSetBtn.setVisibility(View.INVISIBLE);
+        setList.setVisibility(View.INVISIBLE);
+
+    }
+
+    private void showSets(){
+        distanceText.setVisibility(View.VISIBLE);
+        unitText.setVisibility(View.VISIBLE);
+        hoursText.setVisibility(View.VISIBLE);
+        minutesText.setVisibility(View.VISIBLE);
+        secondsText.setVisibility(View.VISIBLE);
+        addSetBtn.setVisibility(View.VISIBLE);
+        setList.setVisibility(View.VISIBLE);
+
+    }
+
     private void refreshList(){
-        setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, model.getList().get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).getSets());
+        setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, model.getSets());
         setList.setAdapter(setAdapter);
     }
 }
