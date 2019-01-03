@@ -2,12 +2,14 @@ package com.example.student.workoutprogram.models;
 
 public class StrengthSet extends WorkoutSet {
     private int reps;
+    private int weight;
 
-    public StrengthSet(int hours, int minutes, int seconds, int reps, String units){
+    public StrengthSet(int hours, int minutes, int seconds, int reps, int weight, String units){
         this.hours=hours;
         this.minutes=minutes;
         this.seconds=seconds;
         this.reps=reps;
+        this.weight=weight;
         this.units=units;
     }
     public StrengthSet(int hours, int minutes, int seconds, int reps){
@@ -26,4 +28,9 @@ public class StrengthSet extends WorkoutSet {
         this.units="lb";
     }
 
+    @Override
+    public String toString() {
+        //return super.toString();
+        return reps + ", " + weight + " " + units + ", " ; //TODO finish this
+    }
 }
