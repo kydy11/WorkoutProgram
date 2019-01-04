@@ -5,28 +5,37 @@ import com.example.student.workoutprogram.views.WorkoutMenu;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import static com.example.student.workoutprogram.views.WorkoutMenu.Type.Cardio;
+
 
 public class Workout implements Serializable {
     public static int current;
     private String workoutName;
     private WorkoutMenu.Type type;
-    private ArrayList<WorkoutSet> workoutSets;
+//    private ArrayList<WorkoutSet> workoutSets;
+
+    private ArrayList<CardioSet> cardioSets;
+    private ArrayList<StrengthSet> strengthSets;
 
     public Workout(String name, WorkoutMenu.Type type){
         workoutName=name;
         this.type =type;
-        workoutSets =new ArrayList<>();
+        if(this.type ==Cardio){
+            cardioSets =new ArrayList<>();
+        }else{
+            strengthSets =new ArrayList<>();
+        }
     }
 
-    public void addSet(WorkoutSet set){
-        workoutSets.add(set);
+    public void addSet(CardioSet set){
+        cardioSets.add(set);
     }
 
     public String getWorkoutName() {
         return workoutName;
     }
 
-    public ArrayList<WorkoutSet> getSets(){
+    public ArrayList</*WorkoutSet*/ CardioSet> getSets(){
         if(workoutSets.size()!=0) {
             return workoutSets;
         }else{

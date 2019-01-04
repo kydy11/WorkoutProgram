@@ -2,7 +2,6 @@ package com.example.student.workoutprogram.views;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,15 +17,14 @@ import android.widget.TextView;
 import com.example.student.workoutprogram.R;
 import com.example.student.workoutprogram.models.CardioSet;
 import com.example.student.workoutprogram.models.Model;
-import com.example.student.workoutprogram.models.Routine;
-import com.example.student.workoutprogram.models.Session;
+import com.example.student.workoutprogram.models.StrengthSet;
 import com.example.student.workoutprogram.models.Workout;
 import com.example.student.workoutprogram.models.WorkoutSet;
 
 import java.util.ArrayList;
 
 public class WorkoutMenu extends AppCompatActivity {
-    public static enum Type{Strength, Cardio};
+    public enum Type{Strength, Cardio}
     private Button btn;
     private ListView wList;
     private Type type;
@@ -44,9 +42,13 @@ public class WorkoutMenu extends AppCompatActivity {
     private Button addSetBtn;
     private TextView workoutTitle;
     private ListView setList;
-    private ArrayAdapter<WorkoutSet> setAdapter;
+    private ArrayAdapter</*WorkoutSet*/ CardioSet> setAdapter;
 
     private int distance;
+
+    private int reps;
+    private int weight;
+
     private String units;
     private int hours;
     private int minutes;
@@ -64,12 +66,12 @@ public class WorkoutMenu extends AppCompatActivity {
         wList = findViewById(R.id.workoutList);
 
         distanceText = findViewById(R.id.distinceEditText);
-        unitText = findViewById(R.id.dUnitEditText);
-        hoursText =findViewById(R.id.cTimeHrEditText);
-        minutesText = findViewById(R.id.cTimeMEditText);
-        secondsText = findViewById(R.id.cTimeSEditText);
-        addSetBtn = findViewById(R.id.addCSetBtn);
-        setList = findViewById(R.id.cSetList);
+        unitText = findViewById(R.id.unitEditText);
+        hoursText =findViewById(R.id.timeHrEditText);
+        minutesText = findViewById(R.id.timeMEditText);
+        secondsText = findViewById(R.id.timeSEditText);
+        addSetBtn = findViewById(R.id.addSetBtn);
+        setList = findViewById(R.id.setList);
         workoutTitle = findViewById(R.id.Title);
 
 
@@ -88,10 +90,10 @@ public class WorkoutMenu extends AppCompatActivity {
             model.addWorkout(new Workout(getIntent().getStringExtra("nameOfWorkout"), type));
             model.saveData(this);
 
-            //WorkoutListHelp.writeData(wItems, this);
+//            //WorkoutListHelp.writeData(wItems, this);
 //            ModelSaveFile modelSaveFile = new ModelSaveFile(this);
 //            modelSaveFile.writeData(model.getWorkouts());
-            //RoutineListHelp.writeData(model.getWorkouts(),this);
+//            //RoutineListHelp.writeData(model.getWorkouts(),this);
         }
 
         addSetBtn.setOnClickListener(new View.OnClickListener() {
@@ -153,14 +155,14 @@ public class WorkoutMenu extends AppCompatActivity {
                 input.setInputType(InputType.TYPE_CLASS_TEXT);
                 builder.setView(input);
                 WorkoutSet.current = position;
-                input.setText(model.getList().get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).getSets().get(WorkoutSet.current).getNotes());
+                input.setText(model.getSets().get(WorkoutSet.current).getNotes());
 
 // Set up the buttons
                 builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialogText = input.getText().toString();
-                        model.getList().get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).getSets().get(WorkoutSet.current).setNotes(dialogText);
+                        model.getSets().get(WorkoutSet.current).setNotes(dialogText);
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -203,7 +205,8 @@ public class WorkoutMenu extends AppCompatActivity {
     }
 
     private void refreshList(){
-        setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, model.getSets());
+        ArrayList</*WorkoutSet*/ CardioSet> sets = model.getSets();
+        setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sets/*model.getSets()*/);
         setList.setAdapter(setAdapter);
     }
 }

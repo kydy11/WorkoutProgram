@@ -37,6 +37,7 @@ public class StrengthFragment extends DialogFragment {
     private ListView setList;
 
     private int reps;
+    private int weight;
     private String units;
     private int hours;
     private int minutes;
@@ -81,7 +82,7 @@ public class StrengthFragment extends DialogFragment {
                 minutes =Integer.parseInt(minutesText.getText().toString());
                 seconds = Integer.parseInt(secondsText.getText().toString());
 
-                model.getList().get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).addSet(new StrengthSet(hours,minutes,seconds,reps,units));
+//                model.getWorkouts().get(Workout.current).addSet(new StrengthSet(hours,minutes,seconds,reps,weight,units));
 
             }
         });

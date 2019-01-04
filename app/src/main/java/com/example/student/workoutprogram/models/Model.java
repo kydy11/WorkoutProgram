@@ -37,7 +37,7 @@ public class Model {
         routines.get(Routine.current).getSessions().get(Session.current).addWorkout(workout);
     }
 
-    public void addSet(WorkoutSet set){
+    public void addSet(/*WorkoutSet*/ CardioSet set){
         routines.get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).addSet(set);
     }
 
@@ -63,7 +63,7 @@ public class Model {
         return workouts;
     }
 
-    public ArrayList<WorkoutSet> getSets(){
+    public ArrayList</*WorkoutSet*/ CardioSet> getSets(){
 
 
 

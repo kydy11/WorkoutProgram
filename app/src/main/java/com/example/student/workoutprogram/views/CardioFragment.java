@@ -1,7 +1,5 @@
 package com.example.student.workoutprogram.views;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -82,12 +80,12 @@ public class CardioFragment extends Fragment {
         }
 
         distanceText = getActivity().findViewById(R.id.distinceEditText);
-        unitText = getActivity().findViewById(R.id.dUnitEditText);
-        hoursText =getActivity().findViewById(R.id.cTimeHrEditText);
-        minutesText = getActivity().findViewById(R.id.cTimeMEditText);
-        secondsText = getActivity().findViewById(R.id.cTimeSEditText);
-        addSetBtn = getActivity().findViewById(R.id.addCSetBtn);
-        setList = getActivity().findViewById(R.id.cSetList);
+        unitText = getActivity().findViewById(R.id.unitEditText);
+        hoursText =getActivity().findViewById(R.id.timeHrEditText);
+        minutesText = getActivity().findViewById(R.id.timeMEditText);
+        secondsText = getActivity().findViewById(R.id.timeSEditText);
+        addSetBtn = getActivity().findViewById(R.id.addSetBtn);
+        setList = getActivity().findViewById(R.id.setList);
 
         addSetBtn.setOnClickListener(new View.OnClickListener() {
             @Override

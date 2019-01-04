@@ -21,11 +21,12 @@ public class WorkoutSet implements Serializable {
 
     @Override
     public String toString(){
-        if (this.getClass().equals(CardioSet.class)) {
-            return ((CardioSet)this).toString();
-        } else {
-            return ((StrengthSet)this).toString();
-        }
+        return "Workout Set";
+//        if (this.getClass().equals(CardioSet.class)) {
+//            return ((CardioSet)this).toString();
+//        } else {
+//            return ((StrengthSet)this).toString();
+//        }
 
     }
 

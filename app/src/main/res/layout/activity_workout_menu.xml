@@ -52,7 +52,7 @@
                 android:inputType="number" />
 
             <EditText
-                android:id="@+id/dUnitEditText"
+                android:id="@+id/unitEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -62,7 +62,7 @@
                 android:text="mi" />
 
             <Button
-                android:id="@+id/addCSetBtn"
+                android:id="@+id/addSetBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -80,7 +80,7 @@
 
 
             <EditText
-                android:id="@+id/cTimeHrEditText"
+                android:id="@+id/timeHrEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -89,7 +89,7 @@
                 android:inputType="number" />
 
             <EditText
-                android:id="@+id/cTimeMEditText"
+                android:id="@+id/timeMEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -98,7 +98,7 @@
                 android:inputType="number" />
 
             <EditText
-                android:id="@+id/cTimeSEditText"
+                android:id="@+id/timeSEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -107,7 +107,7 @@
         </LinearLayout>
 
         <ListView
-            android:id="@+id/cSetList"
+            android:id="@+id/setList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
