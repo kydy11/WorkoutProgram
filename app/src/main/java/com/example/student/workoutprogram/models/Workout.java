@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import static com.example.student.workoutprogram.views.WorkoutMenu.Type.Cardio;
+import static com.example.student.workoutprogram.views.WorkoutMenu.Type.Strength;
 
 
 public class Workout implements Serializable {
@@ -30,19 +31,38 @@ public class Workout implements Serializable {
     public void addSet(CardioSet set){
         cardioSets.add(set);
     }
+    public void addSet(StrengthSet set){
+        strengthSets.add(set);
+    }
 
     public String getWorkoutName() {
         return workoutName;
     }
 
-    public ArrayList</*WorkoutSet*/ CardioSet> getSets(){
-        if(workoutSets.size()!=0) {
-            return workoutSets;
-        }else{
-            workoutSets =new ArrayList<>();
-            return workoutSets;
+    public ArrayList getSets(){
+        if(this.type == Cardio) {
+            if (cardioSets.size() != 0) {
+                return cardioSets;
+            } else {
+                cardioSets = new ArrayList<>();
+                return cardioSets;
+            }
+        }else if(this.type == Strength){
+            if (cardioSets.size() != 0) {
+                return strengthSets;
+            } else {
+                strengthSets = new ArrayList<>();
+                return strengthSets;
+            }
         }
+        return new ArrayList();
     }
+
+    public WorkoutMenu.Type getType(){
+        return this.type;
+    }
+
+
 
     @Override
     public String toString() {

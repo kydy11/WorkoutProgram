@@ -2,6 +2,7 @@ package com.example.student.workoutprogram.views;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.constraint.solver.widgets.ConstraintAnchor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,7 +43,7 @@ public class WorkoutMenu extends AppCompatActivity {
     private Button addSetBtn;
     private TextView workoutTitle;
     private ListView setList;
-    private ArrayAdapter</*WorkoutSet*/ CardioSet> setAdapter;
+    private ArrayAdapter<WorkoutSet> setAdapter;
 
     private int distance;
 
@@ -55,6 +56,8 @@ public class WorkoutMenu extends AppCompatActivity {
     private int seconds;
 
     private String dialogText;
+
+    private Type wType;
 
 
     @Override
@@ -79,6 +82,9 @@ public class WorkoutMenu extends AppCompatActivity {
 
         adapter = new ArrayAdapter<Workout>(this, android.R.layout.simple_list_item_1, model.getWorkouts());
         wList.setAdapter(adapter);
+
+
+        wType=model.getWorkouts().get(Workout.current).getType();
 
         hideSets();
 
@@ -205,7 +211,13 @@ public class WorkoutMenu extends AppCompatActivity {
     }
 
     private void refreshList(){
-        ArrayList</*WorkoutSet*/ CardioSet> sets = model.getSets();
+        ArrayList sets =model.getSets();
+//        if(wType ==Type.Strength){
+//            (ArrayList<StrengthSet>) sets = model.getSets();
+//        }else{
+//            (ArrayList<CardioSet>) sets = model.getSets();
+//        }
+
         setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sets/*model.getSets()*/);
         setList.setAdapter(setAdapter);
     }
