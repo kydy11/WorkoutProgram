@@ -38,14 +38,6 @@ public class SessionMenu extends AppCompatActivity {
 
 
 
-        //sItems = SessionListHelp.readData(this);
-        ArrayList<Session> sessions =  model.getSessions();
-        if (sessions.size() != 0) {
-            adapter = new ArrayAdapter<Session>(this, android.R.layout.simple_list_item_1, sessions);
-            sList.setAdapter(adapter);
-        }
-
-
         if(getIntent().getBooleanExtra("addToList", false)){
             //adapter.add(new Session("something"));
             model.addSession(new Session(getIntent().getStringExtra("nameOfSession")));
@@ -56,6 +48,13 @@ public class SessionMenu extends AppCompatActivity {
 //            ModelSaveFile modelSaveFile = new ModelSaveFile(this);
 //            modelSaveFile.writeData(model.getWorkouts());
             //RoutineListHelp.writeData(model.getWorkouts(),this);
+        }
+
+        //sItems = SessionListHelp.readData(this);
+        ArrayList<Session> sessions =  model.getSessions();
+        if (sessions.size() != 0) {
+            adapter = new ArrayAdapter<Session>(this, android.R.layout.simple_list_item_1, sessions);
+            sList.setAdapter(adapter);
         }
 
 

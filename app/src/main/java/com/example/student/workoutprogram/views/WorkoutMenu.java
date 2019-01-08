@@ -24,6 +24,9 @@ import com.example.student.workoutprogram.models.WorkoutSet;
 
 import java.util.ArrayList;
 
+import static com.example.student.workoutprogram.views.WorkoutMenu.Type.Cardio;
+import static com.example.student.workoutprogram.views.WorkoutMenu.Type.Strength;
+
 public class WorkoutMenu extends AppCompatActivity {
     public enum Type{Strength, Cardio}
     private Button btn;
@@ -43,7 +46,7 @@ public class WorkoutMenu extends AppCompatActivity {
     private Button addSetBtn;
     private TextView workoutTitle;
     private ListView setList;
-    private ArrayAdapter<WorkoutSet> setAdapter;
+    private ArrayAdapter/*<WorkoutSet>*/ setAdapter;
 
     private int distance;
 
@@ -84,8 +87,6 @@ public class WorkoutMenu extends AppCompatActivity {
         wList.setAdapter(adapter);
 
 
-        wType=model.getWorkouts().get(Workout.current).getType();
-
         hideSets();
 
 
@@ -105,13 +106,22 @@ public class WorkoutMenu extends AppCompatActivity {
         addSetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                wType = model.getWorkouts().get(Workout.current).getType();
+
+                reps =1;//TODO add a way to get reps and weight
+                weight =1;
                 distance = Integer.parseInt(distanceText.getText().toString());
                 units = unitText.getText().toString();
                 hours = Integer.parseInt(hoursText.getText().toString());
                 minutes =Integer.parseInt(minutesText.getText().toString());
                 seconds = Integer.parseInt(secondsText.getText().toString());
 
-                model.addSet(new CardioSet(hours,minutes,seconds,distance,units));
+                if(wType ==Cardio) {
+
+                    model.addSet(new CardioSet(hours, minutes, seconds, distance, units));
+                }else if(wType ==Strength){
+                    model.addSet(new StrengthSet(hours, minutes, seconds, reps, weight, units));
+                }
 
                 model.saveData(WorkoutMenu.this);
 
@@ -161,14 +171,16 @@ public class WorkoutMenu extends AppCompatActivity {
                 input.setInputType(InputType.TYPE_CLASS_TEXT);
                 builder.setView(input);
                 WorkoutSet.current = position;
-                input.setText(model.getSets().get(WorkoutSet.current).getNotes());
+                WorkoutSet set =(WorkoutSet) model.getSets().get(WorkoutSet.current);
+                input.setText(set.getNotes());
 
 // Set up the buttons
                 builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialogText = input.getText().toString();
-                        model.getSets().get(WorkoutSet.current).setNotes(dialogText);
+                        WorkoutSet set =(WorkoutSet) model.getSets().get(WorkoutSet.current);
+                        ((WorkoutSet) model.getSets().get(WorkoutSet.current)).setNotes(dialogText);
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -211,12 +223,20 @@ public class WorkoutMenu extends AppCompatActivity {
     }
 
     private void refreshList(){
-        ArrayList sets =model.getSets();
-//        if(wType ==Type.Strength){
-//            (ArrayList<StrengthSet>) sets = model.getSets();
-//        }else{
-//            (ArrayList<CardioSet>) sets = model.getSets();
-//        }
+
+        wType = model.getWorkouts().get(Workout.current).getType();
+
+        ArrayList sets;
+        if(wType ==Type.Strength){
+            try {
+                sets = (ArrayList<StrengthSet>) model.getSets();
+            }catch (Exception e){
+                System.out.print(e);
+                sets =new ArrayList();
+            }
+        }else{
+            sets = (ArrayList<CardioSet>) model.getSets();
+        }
 
         setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sets/*model.getSets()*/);
         setList.setAdapter(setAdapter);

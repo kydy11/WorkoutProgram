@@ -34,8 +34,11 @@ public class Model {
         routines.get(Routine.current).getSessions().get(Session.current).addWorkout(workout);
     }
 
-    public void addSet(/*WorkoutSet*/ CardioSet set){
-        routines.get(Routine.current).getSessions().get(Session.current).getWorkouts().get(Workout.current).addSet(set);
+    public void addSet( CardioSet set){
+        this.getWorkouts().get(Workout.current).addSet(set);
+    }
+    public void addSet(StrengthSet set){
+        this.getWorkouts().get(Workout.current).addSet(set);
     }
 
     /*******/
