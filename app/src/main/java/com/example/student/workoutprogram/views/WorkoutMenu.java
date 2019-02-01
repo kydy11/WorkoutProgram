@@ -38,6 +38,8 @@ public class WorkoutMenu extends AppCompatActivity {
     //private ArrayList<Workout> wItems;
     private ArrayAdapter<Workout> adapter;
 
+    private EditText repsText;
+    private EditText weightText;
     private EditText distanceText;
     private EditText unitText;
     private EditText hoursText;
@@ -71,6 +73,8 @@ public class WorkoutMenu extends AppCompatActivity {
         btn = findViewById(R.id.addWorkoutButton);
         wList = findViewById(R.id.workoutList);
 
+        repsText =findViewById(R.id.repsEditText);
+        weightText =findViewById(R.id.weightEditText);
         distanceText = findViewById(R.id.distinceEditText);
         unitText = findViewById(R.id.unitEditText);
         hoursText =findViewById(R.id.timeHrEditText);
@@ -145,7 +149,7 @@ public class WorkoutMenu extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) { //workout list
                 Workout.current =position;
-                showSets();
+                showSets(model.getWorkouts().get(Workout.current).getType());
                 workoutTitle.setText(model.getWorkouts().get(Workout.current).toString());
 
                 refreshList();
@@ -201,18 +205,34 @@ public class WorkoutMenu extends AppCompatActivity {
 
     }
     private void hideSets(){
-        distanceText.setVisibility(View.INVISIBLE);
-        unitText.setVisibility(View.INVISIBLE);
-        hoursText.setVisibility(View.INVISIBLE);
-        minutesText.setVisibility(View.INVISIBLE);
-        secondsText.setVisibility(View.INVISIBLE);
-        addSetBtn.setVisibility(View.INVISIBLE);
-        setList.setVisibility(View.INVISIBLE);
+        repsText.setVisibility(View.GONE);
+        weightText.setVisibility(View.GONE);
+        distanceText.setVisibility(View.GONE);
+        unitText.setVisibility(View.GONE);
+        hoursText.setVisibility(View.GONE);
+        minutesText.setVisibility(View.GONE);
+        secondsText.setVisibility(View.GONE);
+        addSetBtn.setVisibility(View.GONE);
+        setList.setVisibility(View.GONE);
+
+
 
     }
 
-    private void showSets(){
-        distanceText.setVisibility(View.VISIBLE);
+    private void showSets(Type type){
+        if(type == Strength) {
+            repsText.setVisibility(View.VISIBLE);
+            weightText.setVisibility(View.VISIBLE);
+            distanceText.setVisibility(View.GONE);
+            unitText.setHint("lb");
+            unitText.setText("lb");
+        }else {
+            distanceText.setVisibility(View.VISIBLE);
+            repsText.setVisibility(View.GONE);
+            weightText.setVisibility(View.GONE);
+            unitText.setHint("mi");
+            unitText.setText("mi");
+        }
         unitText.setVisibility(View.VISIBLE);
         hoursText.setVisibility(View.VISIBLE);
         minutesText.setVisibility(View.VISIBLE);
@@ -226,19 +246,29 @@ public class WorkoutMenu extends AppCompatActivity {
 
         wType = model.getWorkouts().get(Workout.current).getType();
 
-        ArrayList sets;
+
         if(wType ==Type.Strength){
             try {
-                sets = (ArrayList<StrengthSet>) model.getSets();
+                ArrayList<WorkoutSet> sets;
+                sets =  model.getSets();
+
+                setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sets/*model.getSets()*/);
+                setList.setAdapter(setAdapter);
             }catch (Exception e){
                 System.out.print(e);
-                sets =new ArrayList();
+
+                setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList()/*model.getSets()*/);
+                setList.setAdapter(setAdapter);
+
+
             }
         }else{
-            sets = (ArrayList<CardioSet>) model.getSets();
+            ArrayList<CardioSet> sets =model.getSets();
+
+            setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sets/*model.getSets()*/);
+            setList.setAdapter(setAdapter);
+
         }
 
-        setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sets/*model.getSets()*/);
-        setList.setAdapter(setAdapter);
     }
 }

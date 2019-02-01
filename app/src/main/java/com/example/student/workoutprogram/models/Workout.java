@@ -21,11 +21,9 @@ public class Workout implements Serializable {
     public Workout(String name, WorkoutMenu.Type type){
         workoutName=name;
         this.type =type;
-        if(this.type ==Cardio){
-            cardioSets =new ArrayList<>();
-        }else{
-            strengthSets =new ArrayList<>();
-        }
+
+        cardioSets =new ArrayList<>();
+        strengthSets =new ArrayList<>();
     }
 
     public void addSet(CardioSet set){
