@@ -112,18 +112,21 @@ public class WorkoutMenu extends AppCompatActivity {
             public void onClick(View v) {
                 wType = model.getWorkouts().get(Workout.current).getType();
 
-                reps =1;//TODO add a way to get reps and weight
-                weight =1;
-                distance = Integer.parseInt(distanceText.getText().toString());
                 units = unitText.getText().toString();
                 hours = Integer.parseInt(hoursText.getText().toString());
                 minutes =Integer.parseInt(minutesText.getText().toString());
                 seconds = Integer.parseInt(secondsText.getText().toString());
 
-                if(wType ==Cardio) {
+                if(wType ==Cardio)
+                {
+                    distance = Integer.parseInt(distanceText.getText().toString());
 
                     model.addSet(new CardioSet(hours, minutes, seconds, distance, units));
-                }else if(wType ==Strength){
+                }else if(wType ==Strength)
+                {
+                    reps = Integer.parseInt(repsText.getText().toString());
+                    weight = Integer.parseInt(weightText.getText().toString());
+
                     model.addSet(new StrengthSet(hours, minutes, seconds, reps, weight, units));
                 }
 
@@ -224,14 +227,14 @@ public class WorkoutMenu extends AppCompatActivity {
             repsText.setVisibility(View.VISIBLE);
             weightText.setVisibility(View.VISIBLE);
             distanceText.setVisibility(View.GONE);
-            unitText.setHint("lb");
-            unitText.setText("lb");
+            unitText.setHint(getString(R.string.weight_units));
+            unitText.setText(getString(R.string.weight_units));
         }else {
             distanceText.setVisibility(View.VISIBLE);
             repsText.setVisibility(View.GONE);
             weightText.setVisibility(View.GONE);
-            unitText.setHint("mi");
-            unitText.setText("mi");
+            unitText.setHint(getString(R.string.distance_units));
+            unitText.setText( getString(R.string.distance_units));
         }
         unitText.setVisibility(View.VISIBLE);
         hoursText.setVisibility(View.VISIBLE);
@@ -247,17 +250,16 @@ public class WorkoutMenu extends AppCompatActivity {
         wType = model.getWorkouts().get(Workout.current).getType();
 
 
-        if(wType ==Type.Strength){
+        if(wType == Strength){
             try {
-                ArrayList<WorkoutSet> sets;
-                sets =  model.getSets();
+                ArrayList<StrengthSet> sets=  model.getSets();
 
                 setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sets/*model.getSets()*/);
                 setList.setAdapter(setAdapter);
             }catch (Exception e){
                 System.out.print(e);
 
-                setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList()/*model.getSets()*/);
+                setAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList());
                 setList.setAdapter(setAdapter);
 
 

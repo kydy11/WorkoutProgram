@@ -38,15 +38,15 @@ public class Workout implements Serializable {
     }
 
     public ArrayList getSets(){
-        if(this.type == Cardio) {
-            if (cardioSets.size() != 0) {
+        if(type == Cardio) {
+            if (cardioSets.size() > 0) {
                 return cardioSets;
             } else {
                 cardioSets = new ArrayList<>();
                 return cardioSets;
             }
-        }else if(this.type == Strength){
-            if (cardioSets.size() != 0) {
+        }else if(type == Strength){
+            if (cardioSets.size() > 0) {
                 return strengthSets;
             } else {
                 strengthSets = new ArrayList<>();
