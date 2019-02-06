@@ -10,6 +10,7 @@ public class CardioSet extends WorkoutSet {
         this.distance=distince;
         this.units=units;
         time = hours +minutes/60 +seconds/3600;
+        sessionNumb=Session.current;
     }
     public CardioSet(int hours, int minutes, int seconds, int distance){
         this.hours=hours;

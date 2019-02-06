@@ -11,6 +11,7 @@ public class WorkoutSet implements Serializable {
     protected double time;
     protected String units;
     protected String notes;
+    protected int sessionNumb;
 
     public String getNotes(){
         return notes;
@@ -28,6 +29,13 @@ public class WorkoutSet implements Serializable {
 //            return ((StrengthSet)this).toString();
 //        }
 
+    }
+
+    public boolean isActive(){
+        if(sessionNumb==Session.current){
+            return true;
+        }
+        return false;
     }
 
 

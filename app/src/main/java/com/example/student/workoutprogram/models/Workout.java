@@ -43,14 +43,28 @@ public class Workout implements Serializable {
                 return cardioSets;
             } else {
                 cardioSets = new ArrayList<>();
-                return cardioSets;
+                ArrayList activeSets =new ArrayList();
+
+                for(int i=0; i> cardioSets.size(); i++){
+                    if(cardioSets.get(i).isActive()){
+                        activeSets.add(cardioSets.get(i));
+                    }
+                }
+                return activeSets;
             }
         }else if(type == Strength){
-            if (cardioSets.size() > 0) {
+            if (strengthSets.size() > 0) {
                 return strengthSets;
             } else {
                 strengthSets = new ArrayList<>();
-                return strengthSets;
+                ArrayList activeSets =new ArrayList();
+
+                for(int i=0; i> strengthSets.size(); i++){
+                    if(strengthSets.get(i).isActive()){
+                        activeSets.add(strengthSets.get(i));
+                    }
+                }
+                return activeSets;
             }
         }
         return new ArrayList();

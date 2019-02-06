@@ -11,6 +11,7 @@ public class StrengthSet extends WorkoutSet {
         this.reps=reps;
         this.weight=weight;
         this.units=units;
+        sessionNumb=Session.current;
     }
     public StrengthSet(int hours, int minutes, int seconds, int reps){
         this.hours=hours;
@@ -31,6 +32,6 @@ public class StrengthSet extends WorkoutSet {
     @Override
     public String toString() {
         //return super.toString();
-        return (reps + ", " + weight + " " + units + ", " + ( hours*60 +((float) (((int) ((float) seconds/60)*100))/100) ) +"minutes");
+        return (reps + ", " + weight + " " + units + ", " + ( hours*60 +((float) (((int) ((float) seconds/60)*100))/100) ) +" minutes");
     }
 }
