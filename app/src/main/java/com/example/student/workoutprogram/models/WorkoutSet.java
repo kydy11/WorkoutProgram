@@ -32,7 +32,7 @@ public class WorkoutSet implements Serializable {
     }
 
     public boolean isActive(){
-        if(sessionNumb==Session.current){
+        if(sessionNumb ==Session.current){
             return true;
         }
         return false;

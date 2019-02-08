@@ -40,31 +40,35 @@ public class Workout implements Serializable {
     public ArrayList getSets(){
         if(type == Cardio) {
             if (cardioSets.size() > 0) {
-                return cardioSets;
-            } else {
-                cardioSets = new ArrayList<>();
-                ArrayList activeSets =new ArrayList();
 
-                for(int i=0; i> cardioSets.size(); i++){
+                ArrayList<CardioSet> activeSets =new ArrayList<>();
+
+                for(int i=0; i< cardioSets.size(); i++){
                     if(cardioSets.get(i).isActive()){
                         activeSets.add(cardioSets.get(i));
                     }
                 }
                 return activeSets;
+            } else {
+                cardioSets = new ArrayList<>();
+
+                return cardioSets;
             }
         }else if(type == Strength){
             if (strengthSets.size() > 0) {
-                return strengthSets;
-            } else {
-                strengthSets = new ArrayList<>();
-                ArrayList activeSets =new ArrayList();
 
-                for(int i=0; i> strengthSets.size(); i++){
+                ArrayList<StrengthSet> activeSets =new ArrayList<>();
+
+                for(int i=0; i< strengthSets.size(); i++){
                     if(strengthSets.get(i).isActive()){
                         activeSets.add(strengthSets.get(i));
                     }
                 }
                 return activeSets;
+            } else {
+                strengthSets = new ArrayList<>();
+
+                return strengthSets;
             }
         }
         return new ArrayList();
