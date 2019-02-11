@@ -70,6 +70,14 @@ public class Model {
 
         return sets;
     }
+
+    public ArrayList getAllSets(){
+        ArrayList<Workout> workouts=this.getWorkouts();
+        Workout workout =workouts.get(Workout.current);
+        ArrayList sets= workout.getAllSets();
+
+        return sets;
+    }
     /*******/
 
     public void loadData(Context context){
@@ -81,6 +89,25 @@ public class Model {
     public void saveData(Context context){
         ModelSaveFile modelSaveFile = new ModelSaveFile(context);
         modelSaveFile.writeData(routines);
+    }
+
+    public void removeRoutine(){
+        routines.remove(Routine.current);
+    }
+
+    public void removeSession(){
+        this.getSessions().remove(Session.current);
+    }
+
+    public void removeWokout(){
+        this.getWorkouts().remove(Workout.current);
+    }
+
+    public void removeSet(){
+        ArrayList sets=this.getSets();
+        Object toRemove = sets.get(WorkoutSet.current);
+
+        this.getAllSets().remove(toRemove);
     }
 
 }

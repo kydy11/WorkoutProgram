@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 
 import com.example.student.workoutprogram.DatabaseHelper;
@@ -22,6 +23,7 @@ public class RoutineMenu extends AppCompatActivity{
     public static DatabaseHelper routineDb;
     private Button addNew;
     private ListView rList;
+    private CheckBox deleteBtn;
 
     private Model model = Model.getInstance();
 
@@ -36,6 +38,7 @@ public class RoutineMenu extends AppCompatActivity{
 
         addNew = findViewById(R.id.addRoutineButton);
         rList = findViewById(R.id.routineList);
+        deleteBtn =findViewById(R.id.deleteRoutineBtn);
 
         model.loadData(this);
 
@@ -61,7 +64,13 @@ public class RoutineMenu extends AppCompatActivity{
 
                 //toSessionMenu.putExtra("RoutineOpened", model.getWorkouts().get(position));
                 Routine.current = position;
-                startActivity(toSessionMenu);
+
+                if(deleteBtn.isChecked()){
+                    model.removeRoutine();
+                    model.saveData(RoutineMenu.this);
+                }else{
+                    startActivity(toSessionMenu);
+                }
             }
         });
 

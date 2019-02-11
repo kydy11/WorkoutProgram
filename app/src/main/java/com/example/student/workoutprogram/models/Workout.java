@@ -74,6 +74,14 @@ public class Workout implements Serializable {
         return new ArrayList();
     }
 
+    public ArrayList getAllSets(){
+        if(this.type == Strength){
+            return strengthSets;
+        }else{
+            return cardioSets;
+        }
+    }
+
     public WorkoutMenu.Type getType(){
         return this.type;
     }

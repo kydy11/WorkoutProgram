@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class WorkoutMenu extends AppCompatActivity {
     private Button btn;
     private ListView wList;
     private Type type;
+    private CheckBox deleteBtn;
 
     private Model model = Model.getInstance();
 
@@ -72,6 +74,7 @@ public class WorkoutMenu extends AppCompatActivity {
 
         btn = findViewById(R.id.addWorkoutButton);
         wList = findViewById(R.id.workoutList);
+        deleteBtn =findViewById(R.id.deleteWorkoutBtn);
 
         repsText =findViewById(R.id.repsEditText);
         weightText =findViewById(R.id.weightEditText);
@@ -152,8 +155,14 @@ public class WorkoutMenu extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) { //workout list
                 Workout.current =position;
-                showSets(model.getWorkouts().get(Workout.current).getType());
-                workoutTitle.setText(model.getWorkouts().get(Workout.current).toString());
+
+                if(deleteBtn.isChecked()){
+                    model.removeWokout();
+                    model.saveData(WorkoutMenu.this);
+                }else {
+                    showSets(model.getWorkouts().get(Workout.current).getType());
+                    workoutTitle.setText(model.getWorkouts().get(Workout.current).toString());
+                }
 
                 refreshList();
                 /*FragmentManager fm = getSupportFragmentManager();
@@ -165,41 +174,44 @@ public class WorkoutMenu extends AppCompatActivity {
         setList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                WorkoutSet.current = position;
 
+                if(deleteBtn.isChecked()){
+                    model.removeSet();
+                }else {
 
-
-                /******************************************************/// dialog code
-                AlertDialog.Builder builder = new AlertDialog.Builder(WorkoutMenu.this);
-                builder.setTitle("Notes");
+                    /******************************************************/// dialog code
+                    AlertDialog.Builder builder = new AlertDialog.Builder(WorkoutMenu.this);
+                    builder.setTitle("Notes");
 
 // Set up the input
-                final EditText input = new EditText(WorkoutMenu.this);
+                    final EditText input = new EditText(WorkoutMenu.this);
 // Specify the type of input expected.
-                input.setInputType(InputType.TYPE_CLASS_TEXT);
-                builder.setView(input);
-                WorkoutSet.current = position;
-                WorkoutSet set =(WorkoutSet) model.getSets().get(WorkoutSet.current);
-                input.setText(set.getNotes());
+                    input.setInputType(InputType.TYPE_CLASS_TEXT);
+                    builder.setView(input);
+                    WorkoutSet set = (WorkoutSet) model.getSets().get(WorkoutSet.current);
+                    input.setText(set.getNotes());
 
 // Set up the buttons
-                builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialogText = input.getText().toString();
-                        WorkoutSet set =(WorkoutSet) model.getSets().get(WorkoutSet.current);
-                        ((WorkoutSet) model.getSets().get(WorkoutSet.current)).setNotes(dialogText);
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
+                    builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialogText = input.getText().toString();
+                            WorkoutSet set = (WorkoutSet) model.getSets().get(WorkoutSet.current);
+                            ((WorkoutSet) model.getSets().get(WorkoutSet.current)).setNotes(dialogText);
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
 
-                builder.show();
-                /******************************************************/
-
+                    builder.show();
+                    /******************************************************/
+                }
+                model.saveData(WorkoutMenu.this);
 
             }
         });

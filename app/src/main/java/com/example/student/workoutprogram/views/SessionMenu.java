@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 
 import com.example.student.workoutprogram.R;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 public class SessionMenu extends AppCompatActivity {
     private Button addNew;
     private ListView sList;
+    private CheckBox deleteBtn;
 
     private Model model = Model.getInstance();
 
@@ -32,6 +34,7 @@ public class SessionMenu extends AppCompatActivity {
 
         addNew =findViewById(R.id.addSessionButton);
         sList =findViewById(R.id.sessionList);
+        deleteBtn =findViewById(R.id.deleteSessionBtn);
 
 
 
@@ -74,8 +77,14 @@ public class SessionMenu extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Session.current = position;
 
-                startActivity(toWorkoutMenu);
+                if(deleteBtn.isChecked()){
+                    model.removeSession();
+                    model.saveData(SessionMenu.this);
+                }else {
+                    startActivity(toWorkoutMenu);
+                }
             }
+
         });
     }
 
