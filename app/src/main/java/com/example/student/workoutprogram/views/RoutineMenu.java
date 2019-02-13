@@ -44,8 +44,7 @@ public class RoutineMenu extends AppCompatActivity{
 
 
         //rItems = RoutineListHelp.readData(this);
-        adapter = new ArrayAdapter<Routine>(this, android.R.layout.simple_list_item_1, model.getList());
-        rList.setAdapter(adapter);
+        refreshList();
 
 
         final Intent toSessionMenu=new Intent(RoutineMenu.this, SessionMenu.class);
@@ -68,6 +67,7 @@ public class RoutineMenu extends AppCompatActivity{
                 if(deleteBtn.isChecked()){
                     model.removeRoutine();
                     model.saveData(RoutineMenu.this);
+                    refreshList();
                 }else{
                     startActivity(toSessionMenu);
                 }
@@ -75,5 +75,10 @@ public class RoutineMenu extends AppCompatActivity{
         });
 
 
+    }
+
+    private void refreshList(){
+        adapter = new ArrayAdapter<Routine>(this, android.R.layout.simple_list_item_1, model.getList());
+        rList.setAdapter(adapter);
     }
 }

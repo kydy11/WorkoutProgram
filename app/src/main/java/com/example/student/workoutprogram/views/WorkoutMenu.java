@@ -90,8 +90,7 @@ public class WorkoutMenu extends AppCompatActivity {
 
         //wItems = WorkoutListHelp.readData(this);
 
-        adapter = new ArrayAdapter<Workout>(this, android.R.layout.simple_list_item_1, model.getWorkouts());
-        wList.setAdapter(adapter);
+        refreshList();
 
 
         hideSets();
@@ -178,6 +177,7 @@ public class WorkoutMenu extends AppCompatActivity {
 
                 if(deleteBtn.isChecked()){
                     model.removeSet();
+                    refreshList();
                 }else {
 
                     /******************************************************/// dialog code
@@ -219,6 +219,7 @@ public class WorkoutMenu extends AppCompatActivity {
 
 
     }
+
     private void hideSets(){
         repsText.setVisibility(View.GONE);
         weightText.setVisibility(View.GONE);
@@ -283,6 +284,9 @@ public class WorkoutMenu extends AppCompatActivity {
             setList.setAdapter(setAdapter);
 
         }
+
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, model.getWorkouts());
+        wList.setAdapter(adapter);
 
     }
 }

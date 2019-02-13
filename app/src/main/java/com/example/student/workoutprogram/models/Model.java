@@ -96,7 +96,15 @@ public class Model {
     }
 
     public void removeSession(){
-        this.getSessions().remove(Session.current);
+
+        /*******remove all sets attached to the session******/
+        ArrayList sets=this.getSets();
+        for(int i =0; i<sets.size(); i++){
+            this.getSets().remove(i);
+        }
+        /**************/
+
+        this.getSessions().remove(Session.current);//remove current session
     }
 
     public void removeWokout(){

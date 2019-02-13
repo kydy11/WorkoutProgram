@@ -54,11 +54,7 @@ public class SessionMenu extends AppCompatActivity {
         }
 
         //sItems = SessionListHelp.readData(this);
-        ArrayList<Session> sessions =  model.getSessions();
-        if (sessions.size() != 0) {
-            adapter = new ArrayAdapter<Session>(this, android.R.layout.simple_list_item_1, sessions);
-            sList.setAdapter(adapter);
-        }
+        refreshList();
 
 
 
@@ -80,12 +76,21 @@ public class SessionMenu extends AppCompatActivity {
                 if(deleteBtn.isChecked()){
                     model.removeSession();
                     model.saveData(SessionMenu.this);
+                    refreshList();
                 }else {
                     startActivity(toWorkoutMenu);
                 }
             }
 
         });
+    }
+
+    private void refreshList(){
+        ArrayList<Session> sessions =  model.getSessions();
+        if (sessions.size() != 0) {
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sessions);
+            sList.setAdapter(adapter);
+        }
     }
 
 
