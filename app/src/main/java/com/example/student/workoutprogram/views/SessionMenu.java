@@ -71,7 +71,7 @@ public class SessionMenu extends AppCompatActivity {
         sList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Session.current = position;
+                Session.current = model.getSessions().get(position);
 
                 if(deleteBtn.isChecked()){
                     model.removeSession();

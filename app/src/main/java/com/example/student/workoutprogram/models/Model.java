@@ -97,17 +97,22 @@ public class Model {
 
     public void removeSession(){
 
-        /*******remove all sets attached to the session******/
+        /*******remove all sets the session is connected to******/
         ArrayList sets=this.getSets();
-        for(int i =0; i<sets.size(); i++){
-            this.getSets().remove(i);
+        for(int i=0; i<sets.size(); i++){
+            for(int w=0; w<this.getAllSets().size(); w++){
+                if(sets.get(i).equals( this.getAllSets().get(w)) ){
+                    this.getAllSets().remove(w);
+                    w--;
+                }
+            }
         }
         /**************/
 
         this.getSessions().remove(Session.current);//remove current session
     }
 
-    public void removeWokout(){
+    public void removeWorkout(){
         this.getWorkouts().remove(Workout.current);
     }
 

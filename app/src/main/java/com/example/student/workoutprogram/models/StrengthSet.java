@@ -11,7 +11,7 @@ public class StrengthSet extends WorkoutSet {
         this.reps=reps;
         this.weight=weight;
         this.units=units;
-        sessionNumb=Session.current;
+        session=Session.current;
     }
     public StrengthSet(int hours, int minutes, int seconds, int reps){
         this.hours=hours;

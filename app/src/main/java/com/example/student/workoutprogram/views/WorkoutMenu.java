@@ -2,7 +2,6 @@ package com.example.student.workoutprogram.views;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.constraint.solver.widgets.ConstraintAnchor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -90,7 +89,7 @@ public class WorkoutMenu extends AppCompatActivity {
 
         //wItems = WorkoutListHelp.readData(this);
 
-        refreshList();
+        refreshWorkouts();
 
 
         hideSets();
@@ -156,14 +155,15 @@ public class WorkoutMenu extends AppCompatActivity {
                 Workout.current =position;
 
                 if(deleteBtn.isChecked()){
-                    model.removeWokout();
+                    model.removeWorkout();
                     model.saveData(WorkoutMenu.this);
+                    refreshWorkouts();
                 }else {
                     showSets(model.getWorkouts().get(Workout.current).getType());
                     workoutTitle.setText(model.getWorkouts().get(Workout.current).toString());
+                    refreshList();
                 }
 
-                refreshList();
                 /*FragmentManager fm = getSupportFragmentManager();
                 StrengthFragment dialogFragment = StrengthFragment.newInstance();
                 dialogFragment.show(fm, "Temporary Title");*/
@@ -285,8 +285,10 @@ public class WorkoutMenu extends AppCompatActivity {
 
         }
 
+    }
+
+    private void refreshWorkouts(){
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, model.getWorkouts());
         wList.setAdapter(adapter);
-
     }
 }
