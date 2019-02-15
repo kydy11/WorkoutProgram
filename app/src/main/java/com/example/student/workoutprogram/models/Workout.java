@@ -82,6 +82,8 @@ public class Workout implements Serializable {
         }
     }
 
+
+
     public WorkoutMenu.Type getType(){
         return this.type;
     }

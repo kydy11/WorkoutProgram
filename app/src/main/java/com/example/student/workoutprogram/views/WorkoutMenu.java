@@ -217,6 +217,36 @@ public class WorkoutMenu extends AppCompatActivity {
         });
 
 
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (deleteBtn.isChecked()) {
+                    /******************************************************/// dialog code
+                    AlertDialog.Builder builder = new AlertDialog.Builder(WorkoutMenu.this);
+                    builder.setTitle("Warning");
+
+                    builder.setMessage("Deleted items cannot be recovered.");
+
+// Set up the buttons
+                    builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            deleteBtn.setChecked(false);
+                            dialog.cancel();
+                        }
+                    });
+
+                    builder.show();
+                    /******************************************************/
+                }
+            }
+        });
 
     }
 

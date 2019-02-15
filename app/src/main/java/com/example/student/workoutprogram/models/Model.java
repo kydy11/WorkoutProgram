@@ -3,6 +3,7 @@ package com.example.student.workoutprogram.models;
 import android.content.Context;
 
 import com.example.student.workoutprogram.listHelp.ModelSaveFile;
+import com.example.student.workoutprogram.views.WorkoutMenu;
 
 import java.util.ArrayList;
 
@@ -65,10 +66,14 @@ public class Model {
     public ArrayList /*<workoutSet>*/ getSets(){
 
         ArrayList<Workout> workouts=this.getWorkouts();
-        Workout workout =workouts.get(Workout.current);
-        ArrayList sets= workout.getSets();
+        if(workouts !=null && workouts.size() !=0) {
+            Workout workout = workouts.get(Workout.current);
+            ArrayList sets = workout.getSets();
+            return sets;
+        }else {
+            return new ArrayList();
+        }
 
-        return sets;
     }
 
     public ArrayList getAllSets(){
@@ -77,6 +82,26 @@ public class Model {
         ArrayList sets= workout.getAllSets();
 
         return sets;
+    }
+
+    public ArrayList getAllActiveSets(){
+        ArrayList activeSets =new ArrayList();
+
+        ArrayList<Workout> workouts=this.getWorkouts();
+
+        for(int w=0; w<workouts.size(); w++) {
+            Workout workout = workouts.get(w);
+            ArrayList sets = workout.getSets();
+
+            for (int i = 0; i < sets.size(); i++) {
+                Object set = sets.get(i);
+                if (((WorkoutSet) set).isActive()) {
+                    activeSets.add(sets.get(i));
+                }
+            }
+        }
+
+        return activeSets;
     }
     /*******/
 
@@ -98,10 +123,10 @@ public class Model {
     public void removeSession(){
 
         /*******remove all sets the session is connected to******/
-        ArrayList sets=this.getSets();
+        ArrayList sets= getAllActiveSets();
         for(int i=0; i<sets.size(); i++){
             for(int w=0; w<this.getAllSets().size(); w++){
-                if(sets.get(i).equals( this.getAllSets().get(w)) ){
+                if(sets.get(i).equals( this.getAllSets().get(w) ) ){
                     this.getAllSets().remove(w);
                     w--;
                 }
@@ -109,7 +134,7 @@ public class Model {
         }
         /**************/
 
-        this.getSessions().remove(Session.current);//remove current session
+        this.getSessions().remove(Session.current);
     }
 
     public void removeWorkout(){

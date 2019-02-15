@@ -1,6 +1,8 @@
 package com.example.student.workoutprogram.views;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.student.workoutprogram.R;
 import com.example.student.workoutprogram.models.Model;
@@ -82,6 +85,38 @@ public class SessionMenu extends AppCompatActivity {
                 }
             }
 
+        });
+
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (deleteBtn.isChecked()) {
+                    /******************************************************/// dialog code
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SessionMenu.this);
+                    builder.setTitle("Warning");
+
+                    builder.setMessage("Deleted items cannot be recovered.");
+
+// Set up the buttons
+                    builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            deleteBtn.setChecked(false);
+                            dialog.cancel();
+                        }
+                    });
+
+                    builder.show();
+                    /******************************************************/
+                }
+            }
         });
     }
 

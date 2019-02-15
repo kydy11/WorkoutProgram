@@ -1,14 +1,19 @@
 package com.example.student.workoutprogram.views;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.student.workoutprogram.DatabaseHelper;
 import com.example.student.workoutprogram.R;
@@ -16,6 +21,7 @@ import com.example.student.workoutprogram.listHelp.ModelSaveFile;
 import com.example.student.workoutprogram.listHelp.RoutineListHelp;
 import com.example.student.workoutprogram.models.Model;
 import com.example.student.workoutprogram.models.Routine;
+import com.example.student.workoutprogram.models.WorkoutSet;
 
 import java.util.ArrayList;
 
@@ -70,6 +76,39 @@ public class RoutineMenu extends AppCompatActivity{
                     refreshList();
                 }else{
                     startActivity(toSessionMenu);
+                }
+            }
+        });
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (deleteBtn.isChecked()) {
+                    /******************************************************/// dialog code
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RoutineMenu.this);
+                    builder.setTitle("Warning");
+
+                    builder.setMessage("Deleted items cannot be recovered.");
+
+
+// Set up the buttons
+                    builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            deleteBtn.setChecked(false);
+                            dialog.cancel();
+                        }
+                    });
+
+                    builder.show();
+                    /******************************************************/
                 }
             }
         });

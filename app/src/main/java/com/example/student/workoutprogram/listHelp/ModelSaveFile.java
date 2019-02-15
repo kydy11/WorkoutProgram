@@ -63,8 +63,6 @@ public class ModelSaveFile {
         } catch (FileNotFoundException e) {
             itemsList = new ArrayList<>();
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (NullPointerException e) {
             e.printStackTrace();
         }catch (Exception e) {
