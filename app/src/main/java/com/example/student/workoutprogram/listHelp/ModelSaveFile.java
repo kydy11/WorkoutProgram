@@ -34,7 +34,9 @@ public class ModelSaveFile {
 
             // write to file
             if (!modelFile.exists()){
-                modelFile.createNewFile();
+                if(!modelFile.createNewFile()){
+                    System.out.print("couldn't create file");
+                }
             }
             FileOutputStream fOut = new FileOutputStream(modelFile);
             OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
@@ -50,7 +52,7 @@ public class ModelSaveFile {
     }
 
     public ArrayList<Routine> readData() {
-        ArrayList<Routine> itemsList = new ArrayList<Routine>();
+        ArrayList<Routine> itemsList = new ArrayList<>();
         try {
 
             if (modelFile.exists()){

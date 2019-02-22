@@ -117,7 +117,7 @@ public class RoutineMenu extends AppCompatActivity{
     }
 
     private void refreshList(){
-        adapter = new ArrayAdapter<Routine>(this, android.R.layout.simple_list_item_1, model.getList());
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, model.getList());
         rList.setAdapter(adapter);
     }
 }

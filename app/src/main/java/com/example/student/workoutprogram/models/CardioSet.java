@@ -3,11 +3,11 @@ package com.example.student.workoutprogram.models;
 public class CardioSet extends WorkoutSet {
     private int distance;
 
-    public CardioSet(int hours, int minutes, int seconds, int distince, String units){
+    public CardioSet(int hours, int minutes, int seconds, int distance, String units){
         this.hours=hours;
         this.minutes=minutes;
         this.seconds=seconds;
-        this.distance=distince;
+        this.distance=distance;
         this.units=units;
         time = hours +minutes/60 +seconds/3600;
         session=Session.current;

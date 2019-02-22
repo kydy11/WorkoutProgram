@@ -24,12 +24,12 @@ public class AddSessionScreen extends AppCompatActivity {
         addButton = findViewById(R.id.sAdd);
         nameText = findViewById(R.id.sNameText);
 
-        final Intent toSessonMenu=new Intent(AddSessionScreen.this, SessionMenu.class);
+        final Intent toSessionMenu=new Intent(AddSessionScreen.this, SessionMenu.class);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(toSessonMenu);
+                startActivity(toSessionMenu);
             }
         });
 
@@ -37,9 +37,9 @@ public class AddSessionScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 name =nameText.getText().toString();
-                toSessonMenu.putExtra("addToList", true);
-                toSessonMenu.putExtra("nameOfSession", name);
-                startActivity(toSessonMenu);
+                toSessionMenu.putExtra("addToList", true);
+                toSessionMenu.putExtra("nameOfSession", name);
+                startActivity(toSessionMenu);
             }
         });
     }

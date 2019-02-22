@@ -17,7 +17,7 @@ public class Model {
     }
 
     private Model() {
-        routines=new ArrayList<Routine>();
+        routines=new ArrayList<>();
         //routines =ModelSaveFile.readData(context);
 
     }

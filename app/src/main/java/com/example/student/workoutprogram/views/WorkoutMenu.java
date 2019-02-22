@@ -77,7 +77,7 @@ public class WorkoutMenu extends AppCompatActivity {
 
         repsText =findViewById(R.id.repsEditText);
         weightText =findViewById(R.id.weightEditText);
-        distanceText = findViewById(R.id.distinceEditText);
+        distanceText = findViewById(R.id.distanceEditText);
         unitText = findViewById(R.id.unitEditText);
         hoursText =findViewById(R.id.timeHrEditText);
         minutesText = findViewById(R.id.timeMEditText);
