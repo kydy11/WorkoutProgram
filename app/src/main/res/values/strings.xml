@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">Workout Program</string>
+
     <string name="cancel_text">Cancel</string>
     <string name="add_text">Add</string>
-    <string name="toWorkout_text">To Workouts</string>
+    <string name="delete_text">Delete?</string>
 
     <string name="weight_units">lb</string>
     <string name="distance_units">mi</string>
+
+
+    <string name="add_routine">Add Routine</string>
+    <string name="add_session">Add Session</string>
+    <string name="add_workout">Add Workout</string>
 </resources>
