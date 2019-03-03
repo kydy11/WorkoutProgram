@@ -5,28 +5,18 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.example.student.workoutprogram.DatabaseHelper;
 import com.example.student.workoutprogram.R;
-import com.example.student.workoutprogram.listHelp.ModelSaveFile;
-import com.example.student.workoutprogram.listHelp.RoutineListHelp;
 import com.example.student.workoutprogram.models.Model;
 import com.example.student.workoutprogram.models.Routine;
-import com.example.student.workoutprogram.models.WorkoutSet;
-
-import java.util.ArrayList;
 
 public class RoutineMenu extends AppCompatActivity{
-    public static DatabaseHelper routineDb;
     private Button addNew;
     private ListView rList;
     private CheckBox deleteBtn;
@@ -40,7 +30,6 @@ public class RoutineMenu extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_routine_menu);
-        routineDb = new DatabaseHelper(this);
 
         addNew = findViewById(R.id.addRoutineButton);
         rList = findViewById(R.id.routineList);
@@ -49,7 +38,6 @@ public class RoutineMenu extends AppCompatActivity{
         model.loadData(this);
 
 
-        //rItems = RoutineListHelp.readData(this);
         refreshList();
 
 

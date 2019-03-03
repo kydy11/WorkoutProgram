@@ -2,8 +2,7 @@ package com.example.student.workoutprogram.models;
 
 import android.content.Context;
 
-import com.example.student.workoutprogram.listHelp.ModelSaveFile;
-import com.example.student.workoutprogram.views.WorkoutMenu;
+import com.example.student.workoutprogram.ModelSaveFile;
 
 import java.util.ArrayList;
 
@@ -108,7 +107,6 @@ public class Model {
     public void loadData(Context context){
         ModelSaveFile modelSaveFile = new ModelSaveFile(context);
         routines = modelSaveFile.readData();
-        //routines =RoutineListHelp.readData(context);
     }
 
     public void saveData(Context context){

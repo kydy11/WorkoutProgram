@@ -86,9 +86,6 @@ public class WorkoutMenu extends AppCompatActivity {
         setList = findViewById(R.id.setList);
         workoutTitle = findViewById(R.id.Title);
 
-
-        //wItems = WorkoutListHelp.readData(this);
-
         refreshWorkouts();
 
 
@@ -102,10 +99,7 @@ public class WorkoutMenu extends AppCompatActivity {
             model.addWorkout(new Workout(getIntent().getStringExtra("nameOfWorkout"), type));
             model.saveData(this);
 
-//            //WorkoutListHelp.writeData(wItems, this);
-//            ModelSaveFile modelSaveFile = new ModelSaveFile(this);
-//            modelSaveFile.writeData(model.getWorkouts());
-//            //RoutineListHelp.writeData(model.getWorkouts(),this);
+
         }
 
         addSetBtn.setOnClickListener(new View.OnClickListener() {
